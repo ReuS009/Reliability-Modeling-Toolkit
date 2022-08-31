@@ -1,0 +1,22 @@
+Package: reliabilitytk
+Type: Package
+Title: Reliability Modeling Toolkit
+Version: 1.0.0
+Authors: Reuel Smith, Mohammad Modarres
+Maintainer: Reuel Smith <smithrc@umd.edu>
+Description: The performs a series of reliability engineering-based operations relating to life, life-stress, and step-stress models.  Designed specifically to execute several computationally involved and challenging reliability modeling calculations learned throughout the course Probabilistic Physics of Failure and Accelerated Testing (ENRE-641).
+Note: - (V1.0.0) New stress-life diagram code added (SN.diagram).  (V0.1.5) New life-stress model for binomial acceleration added.  lifestress.Binom.LSQest produces least-squares analysis. (7/1/2022), - Help files now available for all existing tools.  Still require references to necessary resources which will be done before public release. (6/23/22), - Tools alttestoptimizerBAYES tool and help file are still in development (6/23/22), - Tools lifestress_post_life_plot and lifestress_post_reliability_plot require minor revision before release. (6/23/22)
+License: TBD
+Imports:
+  bayesplot,
+  dplyr,
+  ggplot2,
+  matrixcalc,
+  plotly,
+  pracma,
+  rstan,
+  shinystan,
+  StanHeaders,
+  ucminf
+Encoding: UTF-8
+LazyData: true
