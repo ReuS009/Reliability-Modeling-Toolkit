@@ -5,10 +5,10 @@
 S-N Diagram
 }
 \description{
-Generates the S-N diagram based on various stress and fatigue life input data.
+Generates the stress-life (or S-N) diagram based on various stress and fatigue life input data.
 }
 \usage{
-SN.diagram(x)
+SN.diagram(input_type,dat,stressunits,options)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -16,30 +16,82 @@ SN.diagram(x)
 Numeric definition for the input type of the data and its options: 1 - Fully reversed (R = -1) S-N data points, 2 - cyclic stress range , 3 - multi-axial stress
 }
 \item{data}{
-Data is entered as a list of fully reversed stress and cycle data.  List may include runoff stress and cycle data. (Order of list: (1) alternating stress, (2) cycles to failure, (3) runoff stress, (4) runoff cycles)
+Data is entered as a list of fully reversed stress and cycle data.  List may include runoff stress and cycle data. (Order of list: (1) alternating stress, (2) cycles to failure, (3) runoff stress, (4) runoff cycles).  If no data is to be entered and stress-life parameters \eqn{A} and \eqn{b} are entered in \code{options}, then \code{NA} should be entered here.
 }
 \item{stressunits}{
 Defines the units for the stress amplitude: \code{1} for \emph{'MPa'} and \code{2} for \emph{'ksi'}.  \emph{'MPa'} will be used as default if this heading is left empty.
 }
 \item{options}{
-Optional input vector determined by the definition of its input type \code{input_type}.  May enter the ultimate strength \eqn{Su} and/or the Brinnell Hardness Number (BHN).  Leaving this option blank will result in an estimate of \eqn{Su} and endurance limit \eqn{Se} based on the given data.
+Optional input vector made up of information known about the material primarily.  This heading may be left blank if data is provided, in which case an estimate of \eqn{Su} and endurance limit \eqn{Se} based on the given data.  Options include:
+  \itemize{
+  \item \strong{A} - Life-stress parameter of S-N equation \eqn{S = A x (N_f^b)}
+  \item \strong{b} - Life-stress parameter of S-N equation \eqn{S = A x (N_f^b)}
+  \item \strong{Su} - Ultimate strength
+  \item \strong{Se} - Endurance limit
+  \item \strong{BHN} - The Brinnell Hardness Number
+  \item \strong{corr_rel} - The correlation relationship between mean stress \eqn{Sm} and stress amplitude \eqn{Sa} and equivalent stress amplitude \eqn{Sar} for non-zero mean stress (or non-fully reversed loading conditions).
+  \enumerate{
+    \item \strong{Soderberg relationship} - (enter as "Soderberg")
+    \deqn{Sa/Sar + Sm/Sy = 1} (\emph{NOTE}: \eqn{Sy} yield stress to be entered in list of \code{options})
+    \item \strong{Modified Goodman relationship} - (enter as "ModifiedGoodman")
+    \deqn{Sa/Sar + Sm/Su = 1}
+    \item \strong{Morrow relationship} - (enter as "Morrow")
+    \deqn{Sa/Sar + Sm/sigf = 1} (\emph{NOTE}: \eqn{sigf} true fracture strength to be entered in list of \code{options})
+    \item \strong{Gerber relationship} - (enter as "Gerber")
+    \deqn{Sa/Sar + (Sm/Su)^2 = 1}
+    \item \strong{Smith-Watson-Topper relationship} - (enter as "SWT")
+    \deqn{Sa/Sar = ((1 - R)/2)^0.5}
+    \item \strong{Walker relationship} - (enter as "Walker")
+    \deqn{Sa/Sar = ((1 - R)/2)^(1 - gam)} (\emph{NOTE}: \eqn{gam} the fitting constant to be entered in list of \code{options})
+  }
+  \item \strong{Srange} - Axial cyclical loading stress range vector made up of a maximum and minimum stress under non-fully reversed conditions (ex. \code{c(max stress,min stress)}).
+  \item \strong{Srange (normal stress multi-axial)} - In the case of multi-axial loading stress, enter the multi-axial forms of \strong{Srange}: \emph{Srangex}, \emph{Srangey}, and \emph{Srangez}.  Alternatively, if the multi-axial normal amplitudes and mean stresses are already known, enter instead: \emph{sig_xa}, \emph{sig_ya}, \emph{sig_za}, \emph{sig_xm}, \emph{sig_ym}, and/or \emph{sig_zm}.
+  \item \strong{Trange (shear stress multi-axial)} - Multi-axial loading stress may include shear stress activity along planar regions x-y, y-z, and x-z. Enter these multi-axial ranges if known as: \emph{Trangexy}, \emph{Trangeyz}, and \emph{Trangexz}.  Alternatively, if the multi-axial shear amplitudes stresses are already known, enter instead: \emph{tau_xya}, \emph{tau_yza}, and/or \emph{tau_xza}.
+  \item \strong{Strace} - Desired stress value that user requires the matching life from based on the S-N curve.
+  \item \strong{Ntrace} - Desired life cycle value that user requires the matching alternating stress from based on the S-N curve.
+  }
 }
 }
 \details{
-This code is desgned to create a general S-N diagram (the basis for the life-stress approach) based on available fully reversible data points in the form of alternating or applied stress and number of cycles to failure.  Additional data may be applied if known in the \code{options} input in the form of the ultimate strength \eqn{Su} and/or the Brinnell Hardness Number (BHN).
+The S-N diagram generated by this code is based primarily on the available data and/or the optional material and test properties in addition to the computational bases by which the S-N diagram properties are estimated.  The log-log line depicting failure by stress for example is estimated by either available stress-life data or the known life-stress parameters \eqn{A} and \eqn{b} (entered as \code{options}).
 }
 \value{
-The code will produce the S-N diagram with a 95\% confidence bound about the mean S-N curve.  The command window will print the estimate for the mean strength at 1000 fatigue cycles, the estimated (or known) ultimate strength \eqn{Su}, and the estimated endurance limit \eqn{Se}.
+The code will produce the S-N diagram with a 95\% confidence bound about the mean S-N curve (\emph{if} more than two data is provided).  The command window will print the estimate for the S-N curve equation (valid between \eqn{10^3} and \eqn{10^6} fatiigue cycles) and the estimated endurance limit \eqn{Se}.  If a trace for stress or life is requested, the life and stress estimates for those respective traces will print as well.  A list will also be output in the following order:
+\item{SNdiag}{
+  The S-N diagram.
+}
+\item{A}{
+  The estimate (or given value) for stress-life parameter \eqn{A}.
+}
+\item{b}{
+  The estimate (or given value) for stress-life parameter \eqn{b}.
+}
+\item{Se}{
+  The estimate (or given value) for endurance limit \eqn{Se}.
+}
+\item{Su}{
+  The estimate (or given value) for the ultimate strength \eqn{Su}.
+}
+\item{Strace or Sar}{
+  The given value for the stress for which a life estimate is required.  When \code{input_type} is \code{2} or \code{3}, this value defaults to the equivalent stress amplitude \eqn{Sar} for non-zero mean stress.
+}
+\item{Nequiv}{
+  The estimated value of life in cycles at \code{Strace} or \code{Sar}.
+}
+\item{Ntrace}{
+  The given value for the fatigue life cycle for which an alternating stress estimate is required.
+}
+\item{Sequiv}{
+  The estimated value of alternating stress at \code{Ntrace}.
+}
 }
 \references{
-%% ~put references to the literature/web site here ~
+Banantine, J., Corner, J., & Handrock, J. (1990). Fundamentals of Metal Fatigue Analysis. Prentice Hall
 }
 \author{
 Reuel Smith (2022)
 }
-\note{
-Options for \code{input_type} = 2 and 3 ar currently unavailable for v1.0.  They will be activated in a later build.
-}
+\note{}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
@@ -51,23 +103,23 @@ Options for \code{input_type} = 2 and 3 ar currently unavailable for v1.0.  They
 datSN1 <- list(c(340,300,290,275,260,255,250,235,230,220,215,210),c(15e3,24e3,36e3,80e3,177e3,162e3,301e3,290e3,361e3,881e3,1.3e6,2.5e6),c(210,210,205,205,205),c(1e7,1e7,1e7,1e7,1e7))
 SN.diagram(1,datSN1,1)
 
-# Example 2a: List amplitude stress (in ksi) and cycles to failure.  Also includes known ultimate strength and BHN.
+# Example 2: List amplitude stress (in ksi) and cycles to failure.  Also includes known ultimate strength and BHN.
 datSN_MatA <- list(c(32.3,30.3,27.9,25.9,25.4,24.4),c(4.5e4,2.4e5,8e5,1.5e6,2.7e6,7.8e6),c(24.4,24,23.6,23.5),c(1e7,2.6e7,1.2e7,2.2e7))
 Su_MatA <- 42
 BHN_MatA <- 69
 SN.diagram(1,datSN_MatA,2,list(Su = Su_MatA, BHN = BHN_MatA))
 
-# Example 2b: List amplitude stress (in ksi) and cycles to failure.  Also includes known ultimate strength and BHN.
-datSN_MatB <- list(c(81.4,74.7,71.6,64.7,62.1,59.6,58.8,58.7),c(4.4e4,8.5e4,1.4e5,6.3e5,1.9e6,2.9e6,6.4e5,1.4e6),c(57.2,56.2),c(1e8,9e7))
-Su_MatB <- 102.6
-BHN_MatB <- 209
-SN.diagram(1,datSN_MatB,2,list(Su = Su_MatB, BHN = BHN_MatB))
+# Example 3: List amplitude stress (in ksi) and cycles to failure.  Also includes known ultimate strength and BHN.
+datSN_MatB <- list(c(110,105,100,98,95),c(2.4e4,3.1e4,4.5e4,8.7e4,1.5e5),c(92,90),c(1e8,1e8))
+Su_MatB <- 180
+BHN_MatB <- 370
+SN.diagram(1,datSN_MatB,2,list(Su = Su_MatB, BHN = BHN_MatB, Ntrace = 10^5, Strace = 115))
 
-# Example 2c: List amplitude stress (in ksi) and cycles to failure.  Also includes known ultimate strength and BHN.
-datSN_MatC <- list(c(110,105,100,98,95),c(2.4e4,3.1e4,4.5e4,8.7e4,1.5e5),c(92,90),c(1e8,1e8))
-Su_MatC <- 180
-BHN_MatC <- 370
-SN.diagram(1,datSN_MatC,2,list(Su = Su_MatC, BHN = BHN_MatC))
+# Example 4: Example 2.1 in "Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment."
+SN.diagram(2,list(760,1000),1,list(Su = 1030, Se = 410, Srange = c(760,70), corr_rel = "ModifiedGoodman"))
+
+# Example 5: Example 2.2 in "Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment" an application of multi-axial stress loading.
+SN.diagram(3,list(886*(c(1000,10^6)^-0.14),c(1000,10^6),886*(c(10^6,10^6)^-0.14),c(10^7,10^7)),1,list(Su = 415, Sy = 227, sig_xa = 43.8, sig_ya = 87.5, sig_xm = 65.6, sig_ym = 131.3, corr_rel = "ModifiedGoodman"))
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):
