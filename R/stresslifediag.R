@@ -56,7 +56,7 @@ SN.diagram <- function(input_type,dat,stressunits,options){
   # ==================================
   if(input_type==1){
     # Check to see if data is in list form (if it isn't NA that is)
-    if(isFALSE(is.na(dat)) && is.list(dat)==FALSE){
+    if(isFALSE(is.na(dat)[1]) && is.list(dat)==FALSE){
       stop('Enter S-N data as a list of vectors.')
     }
   }
@@ -76,7 +76,7 @@ SN.diagram <- function(input_type,dat,stressunits,options){
       if(missing(options)==FALSE){
         # Pull Smax and Smin if available
         if(length(options$Srange)>0){
-          if(is.na(options$Srange)==0){
+          if(is.na(options$Srange)[1]==0){
             Smax <- max(options$Srange)
             Smin <- min(options$Srange)
           }
@@ -178,7 +178,7 @@ SN.diagram <- function(input_type,dat,stressunits,options){
     }
   }
 
-  if(is.na(dat)==FALSE){
+  if(is.na(dat)[1]==FALSE){
     # Set input data to SN data
     SNdat <- dat
 
@@ -240,7 +240,7 @@ SN.diagram <- function(input_type,dat,stressunits,options){
   }
 
   # Compute A and b
-  if(is.na(dat)==FALSE){
+  if(is.na(dat)[1]==FALSE){
     if(length(S_)==1){
       # If data only has one point, assume 10^6 as your N_Se
       S_ <- c(S_,Se)
@@ -419,10 +419,10 @@ SN.diagram <- function(input_type,dat,stressunits,options){
   }
 
   # Produce some output text that summarizes the results
-  if(is.na(dat)==FALSE){
+  if(is.na(dat)[1]==FALSE){
     cat(c("The estimate for S-N curve S = ",A," x N_f^",b,".\n"),sep = "")
   }
-  if(is.na(dat)==TRUE && length(options$A)==1 && length(options$b)==1){
+  if(is.na(dat)[1]==TRUE && length(options$A)==1 && length(options$b)==1){
     cat(c("The given S-N curve is S = ",A," x N_f^",b,".\n"),sep = "")
   }
   if(length(runoff_S)>=2 || (length(options$Su)==1 && length(options$Se)<1)){
