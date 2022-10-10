@@ -20,24 +20,24 @@ probplotparam.nor(xi, F)
   }
 }
 \details{
-Normal distribution is unbounded (\eqn{-\Inf < x < \Inf}) consisting of a normal mean parameter \eqn{\mu} and a normal standard deviation parameter \eqn{\sigma}.
+Normal distribution is unbounded (\eqn{-\infty < x < \infty}) consisting of a normal mean parameter \eqn{\mu} and a normal standard deviation parameter \eqn{\sigma}.
 
   PDF:
-  \deqn{f(x) = (1 / \sigma \sqrt(2 \pi)) exp[-(1 / 2) ((x - \mu)/\sigma)^2]}
+  \deqn{f(x) = \frac{1}{\sigma \sqrt{2 \pi}} exp[-\frac{1}{2} (\frac{x - \mu}{\sigma})^2]}
 
   CDF:
 
-  \deqn{F(x) = \Phi[((x - \mu)/\sigma)]
+  \deqn{F(x) = \Phi[\frac{x - \mu}{\sigma}]
   }
 }
 \value{
 Returns several parameters for a single probability plot from a set of data \code{xi}.
 
 \item{x_p at (0.1\% and 99.9\%)}{
-  Returns the \eqn{x_p at 0.1}\% and \eqn{x_p at 99.9}\% based on a normal distribution.  \code{probplot.nor} uses this output to plot the best-fit line on the normal probability plots.
+  Returns the \eqn{x_{p\;at\;0.1\%}} and \eqn{x_{p\;at\;99.9\%}} based on a normal distribution.  \code{probplot.nor} uses this output to plot the best-fit line on the normal probability plots.
 }
 \item{fcB}{
-Returns the transformed y-axis parameter for probabilities \eqn{0.1}\% and \eqn{99.9}\%.  For the normal plot the y-axis is \eqn{\Phi^-1 (p)}.  \code{probplot.nor} uses this output to plot the best-fit line on the normal probability plots.
+Returns the transformed y-axis parameter for probabilities \eqn{0.1}\% and \eqn{99.9}\%.  For the normal plot the y-axis is \eqn{\Phi^{-1} (p)}.  \code{probplot.nor} uses this output to plot the best-fit line on the normal probability plots.
 }
 \item{normresults}{
   The least squares estimates for the normal mean parameter \eqn{\mu} and the normal standard deviation parameter \eqn{\sigma}.
@@ -68,37 +68,6 @@ Rc1 <- c(80,80,84)
 x_R <- plotposit.blom(i = rankcalc(xi = Xi1, rc = Rc1), xi = Xi1, rc = Rc1)
 probplotparam.nor(x_R[,1], x_R[,3])
 
-## The function is currently defined as
-function (xi, F)
-{
-    fcB <- qnorm(c(0.001, 0.999), mean = 0, sd = 1)
-    if (F[length(F)] == 1) {
-        yfit <- qnorm(F[1:length(F) - 1], mean = 0, sd = 1)
-        xfit <- xi[1:length(F) - 1]
-    }
-    else {
-        yfit <- qnorm(F, mean = 0, sd = 1)
-        xfit <- xi
-    }
-    pb2 <- lm(yfit ~ poly(xfit, 1, raw = TRUE))
-    intercept <- summary(pb2)$coefficients[1, 1]
-    slope <- summary(pb2)$coefficients[2, 1]
-    sigmay <- 1/slope
-    meany <- -intercept * sigmay
-    R2 <- summary(pb2)$r.squared
-    normresults <- matrix(c(meany, sigmay), nrow = 1, ncol = 2,
-        byrow = TRUE, dimnames = list(c("Normal Parameters"),
-            c("mean_t", "sigma_t")))
-    xfit2 <- c(meany, meany + sigmay)
-    yfit2 <- c(qnorm(0.5, mean = 0, sd = 1), qnorm(0.84, mean = 0,
-        sd = 1))
-    pb2_B <- lm(yfit2 ~ poly(xfit2, 1, raw = TRUE))
-    min_mu_sig <- summary(pb2_B)$coefficients[2, 1]
-    siginv <- summary(pb2_B)$coefficients[1, 1]
-    ttfc <- c((qnorm(0.001, mean = 0, sd = 1) - siginv)/min_mu_sig,
-        (qnorm(0.999, mean = 0, sd = 1) - siginv)/min_mu_sig)
-    return(list(ttfc, fcB, normresults, R2))
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

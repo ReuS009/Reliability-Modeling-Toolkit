@@ -29,7 +29,7 @@ Label for the x-axis for the plot.  If left blank, the default label is "X".
 }
 \details{
 Definition of \emph{Kaplan-Meier} plotting position equation for failure probability (or unreliability) \eqn{F(x)}:
-\deqn{F_i(x_i) = 1 - \Pi_(x_j <= x) (1 - d/j)} (\emph{NOTE}: \eqn{d} is the number of failed units and \eqn{j} is the reverse rank)
+\deqn{F_i(x_i) = 1 - \Pi_{x_j \le x} (1 - \frac{d}{j})} (\emph{NOTE}: \eqn{d} is the number of failed units and \eqn{j} is the reverse rank)
 }
 \value{
 Outputs the matrix of non-parametric mean point estimates and upper and lower confidence limits of unreliability, reliability, hazard function, and cumulative hazard function versus the random variable \eqn{x}.  Output also includes the nonparametric plot stated by \code{relfcn} input.
@@ -55,33 +55,6 @@ Xi1 <- c(70,71,75,78,89)
 Rc1 <- c(80,80,84)
 nonparamplot.kaplanmeier(xi = Xi1, rc = Rc1, relfcn = "reliability", confbnd = 95, xlabel = "Time (hours)")
 
-## The function is currently defined as
-function (xi, rc, relfcn, confbnd, xlabel)
-{
-    if (missing(relfcn)) {
-        relfcn <- "reliability"
-    }
-    if (missing(confbnd)) {
-        alpha <- 1 - 0.95
-    }
-    else {
-        alpha <- (100 - confbnd) * 0.01
-    }
-    if (missing(xlabel)) {
-        xlabel <- "X"
-    }
-    if (missing(rc)) {
-        FRhH <- plotposit.kaplanmeier(xi)
-        nonparamset <- plottable.nonparam(xi, NULL, FRhH, relfcn,
-            alpha, xlabel)
-    }
-    else {
-        FRhH <- plotposit.kaplanmeier(xi, rc)
-        nonparamset <- plottable.nonparam(xi, rc, FRhH, relfcn,
-            alpha, xlabel)
-    }
-    return(nonparamset)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

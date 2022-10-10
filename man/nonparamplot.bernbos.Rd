@@ -30,7 +30,7 @@ Label for the x-axis for the plot.  If left blank, the default label is "X".
 }
 \details{
 Definition of \emph{Benard and Bos-Levenbach} plotting position equation for failure probability (or unreliability) \eqn{F(x)}:
-\deqn{F_i(x_i) = (i - 0.3)/(n + 0.2)}
+\deqn{F_i(x_i) = \frac{i - 0.3}{n + 0.2}}
 }
 \value{
 Outputs the matrix of non-parametric mean point estimates and upper and lower confidence limits of unreliability, reliability, hazard function, and cumulative hazard function versus the random variable \eqn{x}.  Output also includes the nonparametric plot stated by \code{relfcn} input.
@@ -56,33 +56,6 @@ Xi1 <- c(70,71,75,78,89)
 Rc1 <- c(80,80,84)
 nonparamplot.bernbos(xi = Xi1, rc = Rc1, relfcn = "reliability", confbnd = 95, xlabel = "Time (hours)")
 
-## The function is currently defined as
-function (xi, rc, relfcn, confbnd, xlabel)
-{
-    if (missing(relfcn)) {
-        relfcn <- "reliability"
-    }
-    if (missing(confbnd)) {
-        alpha <- 1 - 0.95
-    }
-    else {
-        alpha <- (100 - confbnd) * 0.01
-    }
-    if (missing(xlabel)) {
-        xlabel <- "X"
-    }
-    if (missing(rc)) {
-        FRhH <- plotposit.bernbos(rankcalc(xi), xi)
-        nonparamset <- plottable.nonparam(xi, NULL, FRhH, relfcn,
-            alpha, xlabel)
-    }
-    else {
-        FRhH <- plotposit.bernbos(rankcalc(xi, rc), xi, rc)
-        nonparamset <- plottable.nonparam(xi, rc, FRhH, relfcn,
-            alpha, xlabel)
-    }
-    return(nonparamset)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

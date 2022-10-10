@@ -20,21 +20,21 @@ probplotparam.wbl(xi, R)
   }
 }
 \details{
-  Weibull distribution is positively bounded (\eqn{x >= 0}) consisting of a Weibull scale parameter \eqn{\alpha} and a Weibull shape parameter \eqn{\beta}.
+  Weibull distribution is positively bounded (\eqn{x \geq 0}) consisting of a Weibull scale parameter \eqn{\alpha} and a Weibull shape parameter \eqn{\beta}.
 
   PDF:
-  \deqn{f(x) = (\beta/\alpha) (x/\alpha)^(\beta - 1) exp[-(x/\alpha)^\beta]}
+  \deqn{f(x) = (\frac{\beta}{\alpha}) (\frac{x}{\alpha})^{\beta - 1} exp[-(\frac{x}{\alpha})^\beta]}
 
   CDF:
 
-  \deqn{F(x) = 1 - exp[-(x/\alpha)^\beta]}
+  \deqn{F(x) = 1 - exp[-(\frac{x}{\alpha})^\beta]}
 
 }
 \value{
 Returns several parameters for a single probability plot from a set of data \code{xi}.
 
 \item{x_p at (0.1\% and 99.9\%)}{
-  Returns the \eqn{x_p at 0.1}\% and \eqn{x_p at 99.9}\% based on a Weibull distribution.  \code{probplot.wbl} uses this output to plot the best-fit line on the Weibull probability plots.
+  Returns the \eqn{x_{p\;at\;0.1\%}} and \eqn{x_{p\;at\;99.9\%}} based on a Weibull distribution.  \code{probplot.wbl} uses this output to plot the best-fit line on the Weibull probability plots.
 }
 \item{fcB}{
 Returns the transformed y-axis parameter for probabilities \eqn{0.1}\% and \eqn{99.9}\%.  For the Weibull plot the y-axis is \eqn{ln[ln(1/R)]}.  \code{probplot.wbl} uses this output to plot the best-fit line on the Weibull probability plots.

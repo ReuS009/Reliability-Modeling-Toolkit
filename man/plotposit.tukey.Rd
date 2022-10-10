@@ -24,7 +24,7 @@ Rank of the failure data set \code{xi}.
 }
 \details{
 Definition of \emph{Tukey} plotting position equation for failure probability (or unreliability) \eqn{F(x)}:
-\deqn{F_i(x_i) = (i - (1/3))/(n + (1/3))}
+\deqn{F_i(x_i) = \frac{i - \frac{1}{3}}{n + \frac{1}{3}}}
 }
 \value{
 Returns a matrix of nonparameter estimates for each failure data xi: Column 2 is the \emph{failure probability}, Column 3 is the \emph{reliability}, Column 4 is the \emph{hazard rate}, and Column 5 is the \emph{cumulative hazard}.
@@ -57,18 +57,6 @@ plotposit.tukey(i = rankcalc(xi = Xi1), xi = Xi1)
 plotposit.tukey(rankcalc(Xi1, NULL), Xi1, NULL)
 plotposit.tukey(rankcalc(Xi1), Xi1)
 
-## The function is currently defined as
-function (i, xi, rc)
-{
-    nx <- nxi.count(xi, rc)
-    F <- (i - (1/3))/(nx[[1]] + (1/3))
-    R <- 1 - F
-    H <- -log(R)
-    h <- c(H[1], diff(H))
-    matFR <- matrix(c(nx[[2]], F, R, h, H), nrow = length(nx[[2]]),
-        ncol = 5)
-    return(matFR)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

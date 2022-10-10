@@ -34,14 +34,14 @@ Label for the x-axis for the plot.  If left blank, the default label is "X".
 }
 }
 \details{
-  Weibull distribution is positively bounded (\eqn{x >= 0}) consisting of a Weibull scale parameter \eqn{\alpha} and a Weibull shape parameter \eqn{\beta}.
+  Weibull distribution is positively bounded (\eqn{x \geq 0}) consisting of a Weibull scale parameter \eqn{\alpha} and a Weibull shape parameter \eqn{\beta}.
 
   PDF:
-  \deqn{f(x) = (\beta/\alpha) (x/\alpha)^(\beta - 1) exp[-(x/\alpha)^\beta]}
+  \deqn{f(x) = (\frac{\beta}{\alpha}) (\frac{x}{\alpha})^{\beta - 1} exp[-(\frac{x}{\alpha})^\beta]}
 
   CDF:
 
-  \deqn{F(x) = 1 - exp[-(x/\alpha)^\beta]}
+  \deqn{F(x) = 1 - exp[-(\frac{x}{\alpha})^\beta]}
 }
 \value{
 The output, in addition to the Weibull probability plot, includes the following for each stress group outlined in the \code{data} input:
@@ -92,114 +92,6 @@ temp <- c(393, 393, 393, 393, 393, 353, 353, 353, 353, 353, 353, 353, 353, 353, 
 RH <- c(0.6, 0.6, 0.6, 0.6, 0.6, 0.85, 0.85, 0.85, 0.85, 0.85, 0.6, 0.6, 0.6, 0.6, 0.6)
 mat3 <- matrix(c(time, cens, temp, RH), nrow = length(time), ncol = 4, byrow = FALSE)
 probplot.wbl(mat3, "KaplanMeier", "Time (hours)")
-
-## The function is currently defined as
-function (data, pp, xlabel1)
-{
-    if (missing(xlabel1)) {
-        xlabel1 <- "X"
-    }
-    dcount <- checkdatacount(checkstress(data))
-    if (sum(dcount[[1]]) == 0) {
-        stop("Please check that there are at least two failure data that occur in the same stress level.")
-    }
-    if (identical(dcount[[1]], dcount[[2]])) {
-        databystress <- checkstress(data)
-        singledat <- NULL
-    }
-    else {
-        databystress <- checkstress(data)[which(dcount[[1]] ==
-            1 & dcount[[2]] == 1)]
-        singledat <- checkstress(data)[which(!dcount[[1]] ==
-            1 & dcount[[2]] == 1)]
-    }
-    Pticks1 <- c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9,
-        c(1:10), 10 * c(2:9), 95, 99, 99.9)
-    Pticks <- log(log(1/(1 - Pticks1/100)))
-    Pticks1label <- c(0.1, 0.2, 0.3, "", 0.5, "", "", "", "",
-        1, 2, 3, "", 5, "", "", "", "", 10 * c(1:9), 95, 99,
-        99.9)
-    fcB <- log(log(1/(1 - c(0.001, 0.999))))
-    if (!is.null(dim(databystress))) {
-        ixirc <- sort.xircdata(data)
-        xiRFblock <- plotposit.select(ixirc[[2]], ixirc[[3]],
-            pp)
-        XB <- xiRFblock[, 1]
-        FB <- log(log(1/xiRFblock[, 3]))
-        ttfc <- probplotparam.wbl(xiRFblock[, 1], xiRFblock[,
-            3])
-        ttfcrange <- ttfc[[1]]
-        params <- ttfc[[3]]
-        outputpp <- list(ttfc[[3]], ttfc[[4]])
-    }
-    else {
-        ixirc_list <- vector(mode = "list", length = length(databystress))
-        xiRFblock_list <- vector(mode = "list", length = length(databystress))
-        XB_list <- vector(mode = "list", length = length(databystress))
-        FB_list <- vector(mode = "list", length = length(databystress))
-        ttfc_list <- vector(mode = "list", length = length(databystress))
-        outputpp <- vector(mode = "list", length = 3 * length(databystress) +
-            1)
-        ttfcrange <- c(1)
-        XBfull <- c(1)
-        FBfull <- c(1)
-        for (i in 1:length(databystress)) {
-            ixirc_list[[i]] <- sort.xircdata(databystress[[i]])
-            xiRFblock_list[[i]] <- plotposit.select(ixirc_list[[i]][[2]],
-                ixirc_list[[i]][[3]], pp)
-            XB_list[[i]] <- xiRFblock_list[[i]][, 1]
-            FB_list[[i]] <- log(log(1/xiRFblock_list[[i]][, 3]))
-            ttfc_list[[i]] <- probplotparam.wbl(xiRFblock_list[[i]][,
-                1], xiRFblock_list[[i]][, 3])
-            outputpp[[i * 3 - 2]] <- databystress[[i]][1, 3:length(databystress[[i]][1,
-                ])]
-            outputpp[[i * 3 - 1]] <- ttfc_list[[i]][[3]]
-            outputpp[[i * 3]] <- ttfc_list[[i]][[4]]
-            XBfull <- c(XBfull, XB_list[[i]])
-            FBfull <- c(FBfull, FB_list[[i]])
-            ttfcrange <- c(ttfcrange, ttfc_list[[i]][[1]])
-        }
-        outputpp[[3 * length(databystress) + 1]] <- singledat
-        ttfcrange <- ttfcrange[2:length(ttfcrange)]
-        XBfull <- XBfull[2:length(XBfull)]
-        FBfull <- FBfull[2:length(FBfull)]
-    }
-    signs1 <- c(floor(log10(min(ttfcrange))):ceiling(log10(max(ttfcrange))))
-    logtimes1 <- 10^signs1
-    Pticks1X <- c(1:(9 * length(logtimes1) - 8))
-    Pticks1X[1] <- logtimes1[1]
-    Pticks1Xlabel <- Pticks1X
-    for (i2 in 1:(length(signs1) - 1)) {
-        Pticks1X[(9 * i2 - 7):(9 * (i2 + 1) - 8)] <- logtimes1[i2] *
-            c(2:10)
-        Pticks1Xlabel[(9 * i2 - 7):(9 * (i2 + 1) - 8)] <- c("",
-            "", "", "", "", "", "", "", logtimes1[i2 + 1])
-    }
-    if (!is.null(dim(databystress))) {
-        plot(XB, FB, log = "x", col = "blue", xlab = xlabel1,
-            ylab = "Percent Failure", pch = 16, xlim = c(10^min(signs1),
-                10^max(signs1)), ylim = c(min(fcB), max(fcB)),
-            axes = FALSE)
-        lines(ttfc[[1]], ttfc[[2]], col = "blue")
-    }
-    else {
-        plot(XBfull, FBfull, log = "x", col = "blue", xlab = xlabel1,
-            ylab = "Percent Failure", pch = 16, xlim = c(10^min(signs1),
-                10^max(signs1)), ylim = c(min(fcB), max(fcB)),
-            axes = FALSE)
-        for (i in 1:length(databystress)) {
-            lines(ttfc_list[[i]][[1]], ttfc_list[[i]][[2]], col = "blue")
-        }
-    }
-    axis(1, at = Pticks1X, labels = Pticks1Xlabel, las = 2, cex.axis = 0.7)
-    axis(2, at = Pticks, labels = Pticks1label, las = 2, cex.axis = 0.7)
-    abline(h = Pticks, lty = 2, col = "grey")
-    abline(v = Pticks1X, lty = 2, col = "grey")
-    legend(10^signs1[1], log(log(1/(1 - 0.99))), legend = c("Data",
-        "Weibull best fit line"), col = c("blue", "blue"), pch = c(16,
-        -1), lty = c(0, 1), cex = 0.8, text.font = 4, bg = "white")
-    return(outputpp)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):
