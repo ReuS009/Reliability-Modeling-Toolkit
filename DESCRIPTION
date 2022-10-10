@@ -1,11 +1,11 @@
 Package: reliabilitytk
 Type: Package
 Title: Reliability Modeling Toolkit
-Version: 1.2.0
+Version: 1.2.1
 Authors: Reuel Smith, Mohammad Modarres
 Maintainer: Reuel Smith <smithrc@umd.edu>
 Description: The performs a series of reliability engineering-based operations relating to life, life-stress, and step-stress models.  Designed specifically to execute several computationally involved and challenging reliability modeling calculations learned throughout the course Probabilistic Physics of Failure and Accelerated Testing (ENRE-641).
-Note: - (v1.2.0) Added seven new scripts related to notch effect of stress-life and strain life, crack propagation, and approximators for stress concentration factors and crack correction.  (V1.1.0) Updated SN.diagram significantly.  Added four new scripts related to stress-life and strain-life evaluation (stress_strain.params, hysteresisloop.plot, lifestrain.life.trace) and Miner's Rule (var.amp.loadingdamage.model).  (V1.0.0) New stress-life diagram code added (SN.diagram).  (V0.1.5) New life-stress model for binomial acceleration added.  lifestress.Binom.LSQest produces least-squares analysis. (7/1/2022), - Help files now available for all existing tools.  Still require references to necessary resources which will be done before public release. (6/23/22), - Tools alttestoptimizerBAYES tool and help file are still in development (6/23/22), - Tools lifestress_post_life_plot and lifestress_post_reliability_plot require minor revision before release. (6/23/22)
+Note: - (v1.2.1) Corrected an output error on SN.diagram and updated the help files for 22 probability plotting-based tools.  (v1.2.0) Added seven new scripts related to notch effect of stress-life and strain life, crack propagation, and approximators for stress concentration factors and crack correction.  (V1.1.0) Updated SN.diagram significantly.  Added four new scripts related to stress-life and strain-life evaluation (stress_strain.params, hysteresisloop.plot, lifestrain.life.trace) and Miner's Rule (var.amp.loadingdamage.model).  (V1.0.0) New stress-life diagram code added (SN.diagram).  (V0.1.5) New life-stress model for binomial acceleration added.  lifestress.Binom.LSQest produces least-squares analysis. (7/1/2022), - Help files now available for all existing tools.  Still require references to necessary resources which will be done before public release. (6/23/22), - Tools alttestoptimizerBAYES tool and help file are still in development (6/23/22), - Tools lifestress_post_life_plot and lifestress_post_reliability_plot require minor revision before release. (6/23/22)
 License: TBD
 Imports:
   bayesplot,
