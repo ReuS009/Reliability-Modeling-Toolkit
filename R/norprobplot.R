@@ -2,6 +2,8 @@
 # Developed by Dr. Reuel Smith, 2021-2022
 
 probplot.nor <- function(data,pp,xlabel1) {
+  library(ggplot2)
+
   # Check if X is there
   if(missing(xlabel1)) {
     xlabel1<-"X"
@@ -73,29 +75,75 @@ probplot.nor <- function(data,pp,xlabel1) {
     FBfull<-FBfull[2:length(FBfull)]
   }
 
-  # Plot
+  # ========================================================
+  # Old Plotting
+  # ========================================================
+  # if (!is.null(dim(databystress))){
+  #   plot(XB, FB, col="blue",
+  #        xlab=xlabel1, ylab="Percent Failure", pch=16,
+  #        xlim=c(min(ttfcrange), max(ttfcrange)), ylim=c(min(fcB), max(fcB)), axes=FALSE)
+  #   lines(ttfc[[1]], ttfc[[2]], col="blue")
+  # } else {
+  #   plot(XBfull, FBfull, col="blue",
+  #        xlab=xlabel1, ylab="Percent Failure", pch=16,
+  #        xlim=c(min(ttfcrange), max(ttfcrange)), ylim=c(min(fcB), max(fcB)), axes=FALSE)
+  #   for(i in 1:length(databystress)){
+  #     lines(ttfc_list[[i]][[1]], ttfc_list[[i]][[2]], col="blue")
+  #   }
+  # }
+  # axis(1, las=2, cex.axis=0.7)
+  # axis(2, at=Pticks,labels=Pticks1label, las=2, cex.axis=0.7)
+  #
+  # #Add horizontal and vertical grid
+  # abline(h = Pticks, lty = 2, col = "grey")
+  # abline(v = axis(1, las=2, cex.axis=0.7),  lty = 2, col = "grey")
+  #
+  # legend(min(ttfcrange), qnorm(0.99,mean=0,sd=1), legend=c("Data", "Normal best fit line"),
+  #        col=c("blue", "blue"), pch=c(16,-1), lty=c(0,1), cex=0.8,
+  #        text.font=4, bg='white')
+  # ========================================================
+  # New Plotting
+  # ========================================================
   if (!is.null(dim(databystress))){
-    plot(XB, FB, col="blue",
-         xlab=xlabel1, ylab="Percent Failure", pch=16,
-         xlim=c(min(ttfcrange), max(ttfcrange)), ylim=c(min(fcB), max(fcB)), axes=FALSE)
-    lines(ttfc[[1]], ttfc[[2]], col="blue")
+    # Single Stress
+    df <- data.frame(XScale = XB, Fscale = FB, data = rep("data",length(XB)))
+    df2 <- data.frame(Xline = ttfc[[1]], Fline = ttfc[[2]], best_fit = rep("Best-fit",2))
+
+    plotout<-ggplot() +
+      geom_point(data=df, aes(XScale,Fscale, shape = data), colour = 'black', size = 2.2) +
+      scale_x_continuous(limits = min(ttfcrange), max(ttfcrange), breaks=Pticks1X, labels=Pticks1Xlabel) +
+      scale_y_continuous(limits = c(min(fcB), max(fcB)), breaks=Pticks, labels=Pticks1label) +
+      xlab(xlabel1) +
+      ylab("Percent Failure")
+    plotout <- plotout + geom_line(data=df2, aes(Xline,Fline, colour = best_fit), size = 0.9, linetype = "dashed")
+
   } else {
-    plot(XBfull, FBfull, col="blue",
-         xlab=xlabel1, ylab="Percent Failure", pch=16,
-         xlim=c(min(ttfcrange), max(ttfcrange)), ylim=c(min(fcB), max(fcB)), axes=FALSE)
+    # Multi-Stress
+    data_legend <- logical(0)
+    xlines <- rep(0,length(databystress)*2)
+    Flines <- rep(0,length(databystress)*2)
+    line_legend <- rep(0,length(databystress)*2)
+
     for(i in 1:length(databystress)){
-      lines(ttfc_list[[i]][[1]], ttfc_list[[i]][[2]], col="blue")
+      xlines[((i*2) - 1):(i*2)] <- ttfc_list[[i]][[1]]
+      Flines[((i*2) - 1):(i*2)] <- ttfc_list[[i]][[2]]
+      data_legend<-c(data_legend,rep(paste(c("Data for stress level ",databystress[[i]][1,3:length(databystress[[i]][1,])]),collapse = " "),length(XB_list[[i]])))
+      line_legend[((i*2) - 1):(i*2)] <- rep(paste(c("Best-fit for stress level ",databystress[[i]][1,3:length(databystress[[i]][1,])]),collapse = " "),2)
     }
+    df <- data.frame(XScale = XBfull, Fscale = FBfull, data = data_legend)
+    df2 <- data.frame(Xline = xlines, Fline = Flines, best_fit = line_legend)
+
+    plotout<-ggplot() +
+      geom_point(data=df, aes(XScale,Fscale, shape = data), colour = 'black', size = 2.2) +
+      scale_x_continuous(limits = c(min(ttfcrange), max(ttfcrange))) +
+      scale_y_continuous(limits = c(min(fcB), max(fcB)), breaks=Pticks, labels=Pticks1label) +
+      xlab(xlabel1) +
+      ylab("Percent Failure")
+
+    plotout <- plotout + geom_line(data=df2, aes(Xline,Fline, colour = best_fit), size = 0.9, linetype = "dashed")
   }
-  axis(1, las=2, cex.axis=0.7)
-  axis(2, at=Pticks,labels=Pticks1label, las=2, cex.axis=0.7)
 
-  #Add horizontal and vertical grid
-  abline(h = Pticks, lty = 2, col = "grey")
-  abline(v = axis(1, las=2, cex.axis=0.7),  lty = 2, col = "grey")
-
-  legend(min(ttfcrange), qnorm(0.99,mean=0,sd=1), legend=c("Data", "Normal best fit line"),
-         col=c("blue", "blue"), pch=c(16,-1), lty=c(0,1), cex=0.8,
-         text.font=4, bg='white')
-  return(outputpp)
+  # return(plotout)
+  return(list(outputpp, prob_plot = plotout))
+  # return(outputpp)
 }
