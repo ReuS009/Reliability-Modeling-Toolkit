@@ -3,7 +3,7 @@
 
 plotposit.select <- function(xi, rc, pp) {
   if (pp=="Blom") {
-    if(missing(rc)) {
+    if(is.null(rc)) {
       matFR<-plotposit.blom(rankcalc(xi),xi)
     }
     else {
@@ -11,7 +11,7 @@ plotposit.select <- function(xi, rc, pp) {
       }
   }
   if (pp=="Mean") {
-    if(missing(rc)) {
+    if(is.null(rc)) {
       matFR<-plotposit.mean(rankcalc(xi),xi)
     }
     else {
@@ -19,7 +19,7 @@ plotposit.select <- function(xi, rc, pp) {
     }
   }
   if (pp=="Median") {
-    if(missing(rc)) {
+    if(is.null(rc)) {
       matFR<-plotposit.median(rankcalc(xi),xi)
     }
     else {
@@ -27,7 +27,7 @@ plotposit.select <- function(xi, rc, pp) {
     }
   }
   if (pp=="Midpoint") {
-    if(missing(rc)) {
+    if(is.null(rc)) {
       matFR<-plotposit.midpt(rankcalc(xi),xi)
     }
     else {
@@ -35,7 +35,7 @@ plotposit.select <- function(xi, rc, pp) {
     }
   }
   if (pp=="Beard") {
-    if(missing(rc)) {
+    if(is.null(rc)) {
       matFR<-plotposit.beard(rankcalc(xi),xi)
     }
     else {
@@ -43,7 +43,7 @@ plotposit.select <- function(xi, rc, pp) {
     }
   }
   if (pp=="BernardBosLevenbach") {
-    if(missing(rc)) {
+    if(is.null(rc)) {
       matFR<-plotposit.bernbos(rankcalc(xi),xi)
     }
     else {
@@ -51,7 +51,7 @@ plotposit.select <- function(xi, rc, pp) {
     }
   }
   if (pp=="Tukey") {
-    if(missing(rc)) {
+    if(is.null(rc)) {
       matFR<-plotposit.tukey(rankcalc(xi),xi)
     }
     else {
@@ -59,7 +59,7 @@ plotposit.select <- function(xi, rc, pp) {
     }
   }
   if (pp=="Grigorten") {
-    if(missing(rc)) {
+    if(is.null(rc)) {
       matFR<-plotposit.grigorten(rankcalc(xi),xi)
     }
     else {
@@ -67,7 +67,7 @@ plotposit.select <- function(xi, rc, pp) {
     }
   }
   if (pp=="NelsonAalen") {
-    if(missing(rc)) {
+    if(is.null(rc)) {
       matFR<-plotposit.nelsonaalen(xi)
     }
     else {
@@ -75,7 +75,7 @@ plotposit.select <- function(xi, rc, pp) {
     }
   }
   if (pp=="KaplanMeier") {
-    if(missing(rc)) {
+    if(is.null(rc)) {
       matFR<-plotposit.kaplanmeier(xi)
     }
     else {

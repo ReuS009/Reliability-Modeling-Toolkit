@@ -13,12 +13,21 @@ probplotparam.exp2P <- function(xi,F) {
     xfit <- xi
   }
   # Calculate least-squares estimate for 2P exponential parameter
-  pb2 <- lm(yfit ~ poly(xfit, 1, raw=TRUE))
-  sigma <- 1/summary(pb2)$coefficients[2,1]
-  theta <- -sigma*summary(pb2)$coefficients[1,1]
-  R2 <- summary(pb2)$r.squared
+  if(length(xi) >= 2){
+    pb2 <- lm(yfit ~ poly(xfit, 1, raw=TRUE))
+    sigma <- 1/summary(pb2)$coefficients[2,1]
+    theta <- -sigma*summary(pb2)$coefficients[1,1]
+    R2 <- summary(pb2)$r.squared
+    # Calculate upper and lower bound of best fit line
+    ttfc <- c((theta-sigma*log(1-0.001)),(theta-sigma*log(1-0.999)))
+  }
+  if(length(xi) == 1){
+    sigma <- 1/xi
+    theta <- 0
+    R2 <- 0
+    ttfc <- rep(xi,2)
+  }
+
   exp2Presults <- matrix(c(theta,sigma), nrow = 1, ncol = 2, byrow = TRUE,dimnames = list(c("2P Exponential Parameter"),c("theta","sigma")))
-  # Calculate upper and lower bound of best fit line
-  ttfc <- c((theta-sigma*log(1-0.001)),(theta-sigma*log(1-0.999)))
   return(list(ttfc,fcB,exp2Presults,R2))
 }
