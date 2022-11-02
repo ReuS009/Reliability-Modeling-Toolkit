@@ -76,35 +76,35 @@ stepstress.LSQest <- function(data,stepstresstable,ls,dist,pp,therm) {
   # Tabulate initial LSQ Estimates starting with the distributions
   if (dist=="Weibull") {
     distlifeest <- function(fulldata){
-      distoutput<-probplot.wbl(fulldata,pp,colnames(data)[1])
+      distoutput<-probplot.wbl(fulldata,pp,colnames(data)[1])[[1]]
       lifeest<-unlist(distoutput)[ilife]
       return(list(distoutput,lifeest))
     }
   }
   if (dist=="Lognormal") {
     distlifeest <- function(fulldata){
-      distoutput <-probplot.logn(fulldata,pp,colnames(data)[1])
+      distoutput <-probplot.logn(fulldata,pp,colnames(data)[1])[[1]]
       lifeest<-exp(unlist(distoutput)[ilife])
       return(list(distoutput,lifeest))
     }
   }
   if (dist=="Normal") {
     distlifeest <- function(fulldata){
-      distoutput <-probplot.nor(fulldata,pp,colnames(data)[1])
+      distoutput <-probplot.nor(fulldata,pp,colnames(data)[1])[[1]]
       lifeest<-unlist(distoutput)[ilife]
       return(list(distoutput,lifeest))
     }
   }
   if (dist=="Exponential") {
     distlifeest <- function(fulldata){
-      distoutput<-probplot.exp(fulldata,pp,colnames(data)[1])
+      distoutput<-probplot.exp(fulldata,pp,colnames(data)[1])[[1]]
       lifeest<-1/unlist(distoutput)[ilife]
       return(list(distoutput,lifeest))
     }
   }
   if (dist=="2PExponential") {
     distlifeest <- function(fulldata){
-      istoutput <-probplot.exp2P(fulldata,pp,colnames(data)[1])
+      distoutput <-probplot.exp2P(fulldata,pp,colnames(data)[1])[[1]]
       lifeest<-unlist(distoutput)[ilife]
       return(list(distoutput,lifeest))
     }
