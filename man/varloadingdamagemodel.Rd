@@ -15,10 +15,10 @@ var.amp.loadingdamage.model(dat,stressunits)
   \item{dat}{
       A list of loading conditions that is used to compute the missing element(s) of the scenario.  Primarily two input pairs are applied for computation:
       \itemize{
-          \item \strong{(Pair 1)} the \emph{number of operation cycles} by stress block (\eqn{n_i} entered as \code{ni}) and the \emph{number of cycles to failure}  by stress block (\eqn{N_fi} entered as \code{Nf})
+          \item \strong{(Pair 1)} the \emph{number of operation cycles} by stress block (\eqn{n_i} entered as \code{ni}) and the \emph{number of cycles to failure}  by stress block (\eqn{N_{f,i}} entered as \code{Nf})
           \item \strong{(Pair 2)} the \emph{percentage of damage} (between \eqn{0} and \eqn{1}) by stress block (\eqn{D_i} entered as \code{Df}) and the \emph{number of cycles to failure}  by stress block
       }
-      In lieu of \eqn{N_fi}, a list of stress ranges \code{sranges = list(c(Smin1,Smax1),...)} may be used in each pair instead as well as,
+      In lieu of \eqn{N_{f,i}}, a list of stress ranges \code{sranges = list(c(Smin1,Smax1),...)} may be used in each pair instead as well as,
       \itemize{
           \item \strong{b}{
                 Fatigue strength exponent \eqn{b}.
@@ -26,7 +26,7 @@ var.amp.loadingdamage.model(dat,stressunits)
           \item \strong{sig_f}{
                 Fatigue strength coefficient \eqn{\sigma_f'} (in MPa or ksi).  This needs to be in the same units as that of \code{E}.
           }
-          \item \strong{corr_rel} - The correlation relationship between mean stress \eqn{Sm} and stress amplitude \eqn{Sa} and equivalent stress amplitude \eqn{Sar} for non-zero mean stress (or non-fully reversed loading conditions) (see \code{\link{SN.diagram}} for descriptions).
+          \item \strong{corr_rel} - The correlation relationship between mean stress \eqn{S_m} and stress amplitude \eqn{S_a} and equivalent stress amplitude \eqn{S_{ar}} for non-zero mean stress (or non-fully reversed loading conditions) (see \code{\link{SN.diagram}} for descriptions).
       }
   }
   \item{stressunits}{
@@ -39,7 +39,7 @@ var.amp.loadingdamage.model(dat,stressunits)
 \value{
 Input of \emph{Pair 1} produces:
     \item{damagebyblock}{
-        Percent damage by stress block \eqn{D_fi}
+        Percent damage by stress block \eqn{D_{f,i}}
     }
     \item{repetitionstofailure}{
         Number of repetitions to failure \eqn{B_f}
@@ -51,13 +51,15 @@ Input of \emph{Pair 2} produces:
     \item{totalopercycles}{
         Total number of operation cycles \eqn{n = \Sigma n_i}
     }
-If stress ranges are used instead of \eqn{N_fi}, ouput will also include the cycles to failure by stress block \eqn{N_fi} and the reversals to failure by stress block \eqn{2N_fi}.
+If stress ranges are used instead of \eqn{N_{f,i}}, ouput will also include the cycles to failure by stress block \eqn{N_{f,i}} and the reversals to failure by stress block \eqn{2N_{f,i}}.
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
 \references{
-%% ~put references to the literature/web site here ~
+Banantine, J., Corner, J., & Handrock, J. (1990). Fundamentals of Metal Fatigue Analysis. Prentice Hall
+
+Modarres, M., Amiri, M., Jackson, C.  (2017)  Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment.  Center for Risk and Reliability
 }
 \author{
 Reuel Smith, (2022)

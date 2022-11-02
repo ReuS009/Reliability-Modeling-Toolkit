@@ -92,13 +92,17 @@ The output includes a summary of the completed Bayesian analysis in addition to 
   }
 }
 \references{
-%% ~put references to the literature/web site here ~
+Modarres, M., Amiri, M., Jackson, C.  (2017)  Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment.  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2021-2022)
 }
 \note{
 %%  ~~further notes~~
+}
+
+\section{Warning }{
+RStan is currently unable to compile stan code for R and Rtools versions 4.2 and higher.  Stan developers are working on this but suggest downloading older versions of Rtools for now (\link{https://blog.mc-stan.org/2022/04/26/stan-r-4-2-on-windows/}).  Meanwhile with regard to the development of this toolkit, a temporary workaround is being developed.
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
@@ -113,7 +117,7 @@ time_prior <- c(45000, 240000, 800000, 1500000, 2700000, 7800000, 10000000, 2600
 cens_prior <- c(1, 1, 1, 1, 1, 1, 1, 0, 0, 0)
 stress_prior <- c(78.9, 74.02, 68.16, 63.27, 62.05, 59.61, 59.61, 58.63, 57.65, 57.41)
 mat1 <- matrix(c(time_prior, cens_prior, stress_prior), nrow = length(time_prior), ncol = 3, byrow = FALSE,dimnames = list(NULL,c("cycles to failure","cens","stress amplitude")))
-est1 <- lifestress.LSQest("InversePower","Lognormal",probplot.logn(mat1,"Blom","cycles to failure"))[[3]]
+est1 <- lifestress.LSQest("InversePower","Lognormal",probplot.logn(mat1,"Blom","cycles to failure")[[1]])[[3]]
 # Update data for Bayesian analysis
 ttf1 <- c(1400000, 9000000)
 ttrc1 <- c(10000000, 10000000, 10000000)

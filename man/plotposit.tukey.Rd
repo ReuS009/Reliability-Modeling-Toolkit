@@ -30,7 +30,7 @@ Definition of \emph{Tukey} plotting position equation for failure probability (o
 Returns a matrix of nonparameter estimates for each failure data xi: Column 2 is the \emph{failure probability}, Column 3 is the \emph{reliability}, Column 4 is the \emph{hazard rate}, and Column 5 is the \emph{cumulative hazard}.
 }
 \references{
-%% ~put references to the literature/web site here ~
+Tukey, J.W. (1962). The Future of Data Analysis. Annals of Mathematical Statistics. vol. 33(1), pp. 21--24.
 }
 \author{
 Dr. Reuel Smith (2020-2022)

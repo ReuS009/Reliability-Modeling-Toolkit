@@ -64,7 +64,7 @@ Outputs a printed summary of the degradation-life distribution model and its max
 %Note that if the multiplicative measurement error is given as a distribution, the printed output for \eqn{\sigma_t} will be replaced with the parameters for the lognormal model error distribution that is \eqn{\epsilon_m ~ logn(b_m,\sigma_m)}
 }
 \references{
-%% ~put references to the literature/web site here ~
+Modarres, M., Amiri, M., Jackson, C.  (2017)  Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment.  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2022)

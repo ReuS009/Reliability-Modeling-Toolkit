@@ -23,7 +23,7 @@ probplotparam.logn(xi, F)
 Lognormal distribution is positively bounded (\eqn{x \geq 0}) consisting of a lognormal mean parameter \eqn{\mu_x} and a lognormal standard deviation parameter \eqn{\sigma_x}.
 
   PDF:
-  \deqn{f(x) = \frac{1}{x \sigma_x \sqrt{2 \pi}} exp[-\frac{1}{2} (\frac{ln x - \mu_x}{\sigma_x})^2]}
+  \deqn{f(x) = \frac{1}{x \sigma_x \sqrt{2 \pi}} \exp[-\frac{1}{2} (\frac{ln x - \mu_x}{\sigma_x})^2]}
 
   CDF:
 
@@ -47,7 +47,7 @@ Returns the transformed y-axis parameter for probabilities \eqn{0.1}\% and \eqn{
 }
 }
 \references{
-%% ~put references to the literature/web site here ~
+Modarres, M., Amiri, M., Jackson, C.  (2017)  Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment.  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2021-2022)

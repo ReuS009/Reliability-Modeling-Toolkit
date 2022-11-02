@@ -62,7 +62,7 @@ The confidence in the maximum likelihood parameter estimates entered as a probab
 Written label used for the life axis.
 }
   \item{Slab}{
-Written label used for the charateristic stress axis or axes.  When the Arrhenius or Eyring life-stress model is selected, this label defaults to \eqn{K^-1} where \eqn{K} is the temperature notation for Kelvin.  Dual-stresses must be entered as vectors (Example: For "Temperature" and "Humidity" enter \code{c("Temperature", "Humidity")}).
+Written label used for the charateristic stress axis or axes.  When the Arrhenius or Eyring life-stress model is selected, this label defaults to \eqn{K^{-1}} where \eqn{K} is the temperature notation for Kelvin.  Dual-stresses must be entered as vectors (Example: For "Temperature" and "Humidity" enter \code{c("Temperature", "Humidity")}).
 }
 }
 \details{
@@ -72,7 +72,7 @@ The characteristic relationship plot compares a set of given stresses to the cha
 The function provides the relationship plot for the given input in addition to the output list of life values at use-stress for the least-squares estimate (output [[1]]) and the maximum likelihood estimate (output [[2]]).
 }
 \references{
-%% ~put references to the literature/web site here ~
+Modarres, M., Amiri, M., Jackson, C.  (2017)  Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment.  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2021-2022)
@@ -92,7 +92,7 @@ time <- c(248, 456, 528, 731, 813, 965, 972, 1528, 164, 176, 289, 319, 386, 459,
 cens <- rep(1,length(time))
 temp <- c(406, 406, 406, 406, 406, 406, 406, 406, 436, 436, 436, 436, 436, 436, 466, 466, 466, 466, 466, 466)
 mat1 <- matrix(c(time, cens, temp), nrow = length(time), ncol = 3, byrow = FALSE,dimnames = list(NULL,c("time (hrs)","cens","temp")))
-lifestress.relationplot(mat1,"Arrhenius","Weibull",probplot.wbl(mat1,"Blom","Time (hours)"),200,490,293.15,0,0.95,"Time (hours)","Degrees (Kelvin)")
+lifestress.relationplot(mat1,"Arrhenius","Weibull",probplot.wbl(mat1,"Blom","Time (hours)")[[1]],200,490,293.15,0,0.95,"Time (hours)","Degrees (Kelvin)")
 
 ## Example 2: Dual Stress values (Temperature in Kelvin and Relative Humidity (RH))
 time <- c(102, 115, 151, 196, 210, 184, 193, 244, 265, 281, 298, 311, 337, 347, 405)
@@ -100,7 +100,7 @@ cens <- c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 temp <- c(393, 393, 393, 393, 393, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353)
 RH <- c(0.6, 0.6, 0.6, 0.6, 0.6, 0.85, 0.85, 0.85, 0.85, 0.85, 0.6, 0.6, 0.6, 0.6, 0.6)
 mat2 <- matrix(c(time, cens, temp, RH), nrow = length(time), ncol = 4, byrow = FALSE,dimnames = list(NULL,c("time (hrs)","cens","temp","Relative humidity")))
-lifestress.relationplot(mat2,"TempHumidity","Weibull",probplot.wbl(mat2,"Blom","Time (hours)"),c(250,0.5),c(400,.9),c(293.15,0.2),0,0.95,"Time (hours)",c("Degrees (Kelvin)","Relative Humidity"))
+lifestress.relationplot(mat2,"TempHumidity","Weibull",probplot.wbl(mat2,"Blom","Time (hours)")[[1]],c(250,0.5),c(400,.9),c(293.15,0.2),0,0.95,"Time (hours)",c("Degrees (Kelvin)","Relative Humidity"))
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

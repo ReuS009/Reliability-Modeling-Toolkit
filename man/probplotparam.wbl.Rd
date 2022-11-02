@@ -23,11 +23,11 @@ probplotparam.wbl(xi, R)
   Weibull distribution is positively bounded (\eqn{x \geq 0}) consisting of a Weibull scale parameter \eqn{\alpha} and a Weibull shape parameter \eqn{\beta}.
 
   PDF:
-  \deqn{f(x) = (\frac{\beta}{\alpha}) (\frac{x}{\alpha})^{\beta - 1} exp[-(\frac{x}{\alpha})^\beta]}
+  \deqn{f(x) = (\frac{\beta}{\alpha}) (\frac{x}{\alpha})^{\beta - 1} \exp[-(\frac{x}{\alpha})^\beta]}
 
   CDF:
 
-  \deqn{F(x) = 1 - exp[-(\frac{x}{\alpha})^\beta]}
+  \deqn{F(x) = 1 - \exp[-(\frac{x}{\alpha})^\beta]}
 
 }
 \value{
@@ -47,7 +47,7 @@ Returns the transformed y-axis parameter for probabilities \eqn{0.1}\% and \eqn{
 }
 }
 \references{
-%% ~put references to the literature/web site here ~
+Modarres, M., Amiri, M., Jackson, C.  (2017)  Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment.  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2021-2022)

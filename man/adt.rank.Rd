@@ -36,26 +36,23 @@ This script identifies which of the following degradation-life models is a the b
   \deqn{D = a + b L} \emph{Parameter order} - c(a,b)
 
   \item \strong{Exponential} (Enter as "Exponential")
-  \deqn{D = b exp(a L) } \emph{Parameter order} - c(a,b)
+  \deqn{D = b \exp(a L) } \emph{Parameter order} - c(a,b)
 
   \item \strong{Square-Root} (Enter as "SquareRoot")
-  \deqn{D = (a + b L)^2} or \deqn{D^(1/2) = a + b L}
+  \deqn{D = (a + b L)^2} or \deqn{D^{1/2} = a + b L}
   \emph{Parameter order} - c(a,b)
 
   \item \strong{Power} (Enter as "Power")
   \deqn{D = b L^a} \emph{Parameter order} - c(a,b)
 
   \item \strong{Logarithmic} (Enter as "Logarithmic")
-  \deqn{D = a + b ln(L)} \emph{Parameter order} - c(a,b)
+  \deqn{D = a + b \ln(L)} \emph{Parameter order} - c(a,b)
 
   \item \strong{Lloyd-Lipow} (Enter as "LloydLipow")
-  \deqn{D = a - b/L} \emph{Parameter order} - c(a,b)
-
-  \item \strong{Temperature-Nonthermal (\emph{or Power-Exponential})} (Enter as "TempNonthermal")
-  \deqn{L = c/((U^b) exp(-a/S))} \emph{Parameter order} - c(a,b,c) (\emph{NOTE}: \eqn{S} is temperature and \eqn{U} is the nonthermal stress)
+  \deqn{D = a - \frac{b}{L}} \emph{Parameter order} - c(a,b)
 
   \item \strong{Mitsuom} (Enter as "Mitsuom")
-  \deqn{D = 1/(1 + b*(L^a))} \emph{Parameter order} - c(a,b) (\emph{NOTE}: The Mitsuom model only works for ratio based degradation that is degradation between 0 and 1.)
+  \deqn{D = \frac{1}{1 + b L^a}} \emph{Parameter order} - c(a,b) (\emph{NOTE}: The Mitsuom model only works for ratio based degradation that is degradation between 0 and 1.)
 }
 }
 \value{
@@ -72,7 +69,7 @@ Outputs a printed summary of the degradation ranking by model.  The list output 
 }
 }
 \references{
-%% ~put references to the literature/web site here ~
+Modarres, M., Amiri, M., Jackson, C.  (2017)  Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment.  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2021-2022)
@@ -81,9 +78,9 @@ Dr. Reuel Smith (2021-2022)
 There is another model, the \strong{Hamada model} is a Mitsuom form model that is specifically reserved for temperature based degradation where,
 
 \strong{Hamada} (Enter as "Hamada")
-  \deqn{D(L,T) = 1/(1 + \beta_1*(L*exp(\beta_3*11605*((1/T_use) - (1/T))))^\beta_2)} \emph{Parameter order} - c(\eqn{\beta_1},\eqn{\beta_2},\eqn{\beta_3})
+  \deqn{D(L,T) = \frac{1}{1 + \beta_1 (L \exp[\beta_3 11605(\frac{1}{T_{use}} - \frac{1}{T})])^{\beta_2}}} \emph{Parameter order} - c(\eqn{\beta_1},\eqn{\beta_2},\eqn{\beta_3})
 
-  Hamada may be used with \code{\link{adt.full.LSQ}}, \code{\link{adt.full.MLE}}, \code{\link{adt.full.addME.MLE}}, \code{\link{adt.full.multME.MLE}}, and \code{\link{adt.full.BAYES}} on the condition that temperature at degrradation \eqn{T} and use temperature \eqn{T_use} are entered in Kelvin.  The option for ranking this model will be available for Version 1.0.
+  Hamada may be used with \code{\link{adt.full.LSQ}}, \code{\link{adt.full.MLE}}, \code{\link{adt.full.addME.MLE}}, \code{\link{adt.full.multME.MLE}}, and \code{\link{adt.full.BAYES}} on the condition that temperature at degrradation \eqn{T} and use temperature \eqn{T_{use}} are entered in Kelvin.  The option for ranking this model will be available for a future release.
 
 }
 

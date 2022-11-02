@@ -96,13 +96,17 @@ The output includes a summary of the completed Bayesian analysis in addition to 
   }
 }
 \references{
-%% ~put references to the literature/web site here ~
+Modarres, M., Amiri, M., Jackson, C.  (2017)  Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment.  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2022)
 }
 \note{
 Suggest running the ADT Rank Calculator \code{\link{adt.rank}} before running this script.
+}
+
+\section{Warning }{
+RStan is currently unable to compile stan code for R and Rtools versions 4.2 and higher.  Stan developers are working on this but suggest downloading older versions of Rtools for now (\link{https://blog.mc-stan.org/2022/04/26/stan-r-4-2-on-windows/}).  Meanwhile with regard to the development of this toolkit, a temporary workaround is being developed.
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~

@@ -24,10 +24,10 @@ plotposit.nelsonaalen(xi, rc)
 }
 \value{
 Definition of \emph{Nelson-Aalen} plotting position equation for failure probability (or unreliability) \eqn{F(x)}:
-\deqn{F_i(x_i) = 1 - exp[-\Sigma_{x_i \le x} \frac{d_i}{n_{i - 1} - d_{i - 1} - c_{i - 1}}]} (\emph{NOTE}: \eqn{d} is the number of failed units and \eqn{c} is the number of censored.)
+\deqn{F_i(x_i) = 1 - \exp[-\Sigma_{x_i \le x} \frac{d_i}{n_{i - 1} - d_{i - 1} - c_{i - 1}}]} (\emph{NOTE}: \eqn{d} is the number of failed units and \eqn{c} is the number of censored.)
 }
 \references{
-%% ~put references to the literature/web site here ~
+Modarres, M., Kaminskiy, M., Krivstov, V.  (2022)	Reliability Engineering and Risk Analysis: A Practical Guide (4th Edition).  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2020-2022)

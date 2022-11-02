@@ -36,7 +36,7 @@ Definition of \emph{Jenkinson's} (or \emph{"Beard"}) plotting position equation 
 Outputs the matrix of non-parametric mean point estimates and upper and lower confidence limits of unreliability, reliability, hazard function, and cumulative hazard function versus the random variable \eqn{x}.  Output also includes the nonparametric plot stated by \code{relfcn} input.
 }
 \references{
-%% ~put references to the literature/web site here ~
+Beard, L. R. (1943) Statistical Analysis in Hydrology. Transactions of the American Society of Civil Engineers. vol. 108, pp. 1110–1160.
 }
 \author{
 Dr. Reuel Smith (2020-2022)

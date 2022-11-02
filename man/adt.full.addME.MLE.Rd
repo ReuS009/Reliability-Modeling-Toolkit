@@ -62,7 +62,7 @@ Outputs a printed summary of the degradation-life distribution model and its max
 }
 }
 \references{
-%% ~put references to the literature/web site here ~
+Modarres, M., Amiri, M., Jackson, C.  (2017)  Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment.  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2022)
@@ -84,9 +84,6 @@ Dr. Reuel Smith (2022)
 ## there is a 0.01 additive measurement error.
 datADT1 <- read.csv("c:/Download/DegradationData1.csv")
 adt.full.addME.MLE(datADT1,"Power",50,0.9,"twosided",0.01)
-(data,lifedam,D0,confid,sided,addME,Tuse)
-
-
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

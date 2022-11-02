@@ -37,11 +37,11 @@ Label for the x-axis for the plot.  If left blank, the default label is "X".
   Weibull distribution is positively bounded (\eqn{x \geq 0}) consisting of a Weibull scale parameter \eqn{\alpha} and a Weibull shape parameter \eqn{\beta}.
 
   PDF:
-  \deqn{f(x) = (\frac{\beta}{\alpha}) (\frac{x}{\alpha})^{\beta - 1} exp[-(\frac{x}{\alpha})^\beta]}
+  \deqn{f(x) = (\frac{\beta}{\alpha}) (\frac{x}{\alpha})^{\beta - 1} \exp[-(\frac{x}{\alpha})^\beta]}
 
   CDF:
 
-  \deqn{F(x) = 1 - exp[-(\frac{x}{\alpha})^\beta]}
+  \deqn{F(x) = 1 - \exp[-(\frac{x}{\alpha})^\beta]}
 }
 \value{
 The output, in addition to the Weibull probability plot, includes the following for each stress group outlined in the \code{data} input:
@@ -57,7 +57,7 @@ Lists the stress level based on the grouped data.  These will always be the firs
 }
 }
 \references{
-%% ~put references to the literature/web site here ~
+Modarres, M., Amiri, M., Jackson, C.  (2017)  Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment.  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2021-2022)

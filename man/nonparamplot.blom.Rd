@@ -36,7 +36,9 @@ Definition of \emph{Blom} (or \emph{Kimball}) plotting position equation for fai
 Outputs the matrix of non-parametric mean point estimates and upper and lower confidence limits of unreliability, reliability, hazard function, and cumulative hazard function versus the random variable \eqn{x}.  Output also includes the nonparametric plot stated by \code{relfcn} input.
 }
 \references{
-%% ~put references to the literature/web site here ~
+Blom, G. (1958). Statistical Estimates and Transformed Beta Variables. Wiley, New York, N.Y., pp.68--75 and pp.143--146.
+
+Modarres, M., Kaminskiy, M., Krivstov, V.  (2022)	Reliability Engineering and Risk Analysis: A Practical Guide (4th Edition).  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2020-2022)

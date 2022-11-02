@@ -36,7 +36,7 @@ Definition of \emph{Grigorten} plotting position equation for failure probabilit
 Outputs the matrix of non-parametric mean point estimates and upper and lower confidence limits of unreliability, reliability, hazard function, and cumulative hazard function versus the random variable \eqn{x}.  Output also includes the nonparametric plot stated by \code{relfcn} input.
 }
 \references{
-%% ~put references to the literature/web site here ~
+Gringorten, I. I. (1963) A Plotting Rule for Extreme Probability. Journal of Geophysical Research. vol. 68, pp. 813–-814
 }
 \author{
 Dr. Reuel Smith (2020-2022)

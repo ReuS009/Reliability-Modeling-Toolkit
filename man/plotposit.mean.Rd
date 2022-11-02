@@ -5,7 +5,7 @@
 Mean Non-Parametric Output Tabulation
 }
 \description{
-Tabulation of nonparametric computations based on Mean (or Expected) Plotting Position (failure probability or unreliability, reliability, hazard, cumulative hazard).
+Tabulation of nonparametric computations based on Mean (also known as "Expected" or "Weibull") Plotting Position (failure probability or unreliability, reliability, hazard, cumulative hazard).
 }
 \usage{
 plotposit.mean(i, xi, rc)
@@ -24,13 +24,15 @@ Rank of the failure data set \code{xi}.
 }
 \details{
 Definition of \emph{Mean} (or \emph{Expected}) plotting position equation for failure probability (or unreliability) \eqn{F(x)}:
-\deqn{F_i(x_i) = i/(n + 1)}
+\deqn{F_i(x_i) = \frac{i}{n + 1}}
 }
 \value{
 Returns a matrix of nonparameter estimates for each failure data xi: Column 2 is the \emph{failure probability}, Column 3 is the \emph{reliability}, Column 4 is the \emph{hazard rate}, and Column 5 is the \emph{cumulative hazard}.
 }
 \references{
-%% ~put references to the literature/web site here ~
+Weibull, W. (1939) A statistical Theory of Strength of Materials. Ingeniors Vetenskaps Academy Handlingar.  (Stockholm), 151, pp 1–45.
+
+Modarres, M., Kaminskiy, M., Krivstov, V.  (2022)	Reliability Engineering and Risk Analysis: A Practical Guide (4th Edition).  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2020-2022)
@@ -56,19 +58,6 @@ Xi1 <- c(70,71,75,78,89)
 plotposit.mean(i = rankcalc(xi = Xi1), xi = Xi1)
 plotposit.mean(rankcalc(Xi1, NULL), Xi1, NULL)
 plotposit.mean(rankcalc(Xi1), Xi1)
-
-## The function is currently defined as
-function (i, xi, rc)
-{
-    nx <- nxi.count(xi, rc)
-    F <- i/(nx[[1]] + 1)
-    R <- 1 - F
-    H <- -log(R)
-    h <- c(H[1], diff(H))
-    matFR <- matrix(c(nx[[2]], F, R, h, H), nrow = length(nx[[2]]),
-        ncol = 5)
-    return(matFR)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

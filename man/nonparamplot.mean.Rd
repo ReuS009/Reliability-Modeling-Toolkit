@@ -5,7 +5,7 @@
 Mean Non-Parametric Plot
 }
 \description{
-Nonparametric plot based on Mean (or Expected) Plottng Position of either failure probability or unreliability, reliability, hazard function, or cumulative hazard
+Nonparametric plot based on Mean (or "Expected" or "Weibull") Plottng Position of either failure probability or unreliability, reliability, hazard function, or cumulative hazard
 }
 \usage{
 nonparamplot.mean(xi, rc, relfcn, confbnd, xlabel)
@@ -36,7 +36,9 @@ Definition of \emph{Mean} (or \emph{Expected}) plotting position equation for fa
 Outputs the matrix of non-parametric mean point estimates and upper and lower confidence limits of unreliability, reliability, hazard function, and cumulative hazard function versus the random variable \eqn{x}.  Output also includes the nonparametric plot stated by \code{relfcn} input.
 }
 \references{
-%% ~put references to the literature/web site here ~
+Weibull, W. (1939) A statistical Theory of Strength of Materials. Ingeniors Vetenskaps Academy Handlingar.  (Stockholm), 151, pp 1–45.
+
+Modarres, M., Kaminskiy, M., Krivstov, V.  (2022)	Reliability Engineering and Risk Analysis: A Practical Guide (4th Edition).  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2020-2022)

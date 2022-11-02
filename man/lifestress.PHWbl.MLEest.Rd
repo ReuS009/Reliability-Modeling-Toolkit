@@ -42,18 +42,18 @@ Indicates whether the limit calculations are based on a two-sided confidence or 
 \details{
 The maximum likelihood estimation is performed on the negated log-likelihood of the entered life-stress accelerated life model using the built-in \code{\link{nlm}} function, a non-linear minimization script that is based on a Newton-type algorithm.  Certain output will not respond well to a poor initial estimate \code{LSQest}.
 
-The proportional hazard Weibull distribution is positively bounded (\eqn{x >= 0}) consisting of a Weibull shape parameter \eqn{\beta}, and \eqn{S} and \eqn{\theta} are stress and parameters (respectively) of a modifier funciton \eqn{g(S;\theta)}.
+The proportional hazard Weibull distribution is positively bounded (\eqn{x \geq 0}) consisting of a Weibull shape parameter \eqn{\beta}, and \eqn{S} and \eqn{\theta} are stress and parameters (respectively) of a modifier funciton \eqn{g(S;\theta)}.
 
   PDF:
-  \deqn{f(x) = \beta x^(\beta - 1) exp[\Sigma_(j=0)^m \theta_j S_j - x_j^\beta exp(\Sigma_(j=0)^m \theta_j S_j)]}
+  \deqn{f(x) = \beta x^{\beta - 1} \exp[\Sigma_{j=0}^m \theta_j S_j - x_j^\beta \exp(\Sigma_{j=0}^m \theta_j S_j)]}
 
   CDF:
 
-  \deqn{F(x) = 1 - exp[- x_j^\beta exp(\Sigma_(j=0)^m \theta_j S_j))]}
+  \deqn{F(x) = 1 - \exp[- x_j^\beta \exp(\Sigma_{j=0}^m \theta_j S_j))]}
 
   Modifier Function:
 
-  \deqn{g(S;\theta) = exp(\Sigma_(j=0)^m \theta_j S_j)}
+  \deqn{g(S;\theta) = \exp(\Sigma_{j=0}^m \theta_j S_j)}
 
 The proportional hazard function is formed by multiplying the baseline hazard function (for a typical Weibull distribution) by the modifier funciton, from which we get the relations for PDF and CDF.
 }
@@ -71,7 +71,7 @@ Outputs a printed summary of the life-stress distribution model, its maximum lik
 }
 }
 \references{
-%% ~put references to the literature/web site here ~
+Modarres, M., Amiri, M., Jackson, C.  (2017)  Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment.  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2022)
@@ -92,11 +92,11 @@ cens <- c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 invtemp <- c(0.002544529, 0.002544529, 0.002544529, 0.002544529, 0.002544529, 0.002832861, 0.002832861, 0.002832861, 0.002832861, 0.002832861, 0.002832861, 0.002832861, 0.002832861, 0.002832861, 0.002832861)
 invRH <- c(1.666666667, 1.666666667, 1.666666667, 1.666666667, 1.666666667, 1.176470588, 1.176470588, 1.176470588, 1.176470588, 1.176470588, 1.666666667, 1.666666667, 1.666666667, 1.666666667, 1.666666667)
 mat1 <- matrix(c(time, cens, invtemp,invRH), nrow = length(time), ncol = 4, byrow = FALSE,dimnames = list(NULL,c("time (hrs)","cens","invtemp","invrelhumidity")))
-est1 <- lifestress.PHWbl.LSQest(probplot.wbl(mat1,"Blom","hours"), 0)[[3]]
+est1 <- lifestress.PHWbl.LSQest(probplot.wbl(mat1,"Blom","hours")[[1]], 0)[[3]]
 lifestress.PHWbl.MLEest(est1,mat1,0,0.9)
 
 ## Example 2: Parametric PH-Weibull model with two continuous covariates (inverse temperature K^-1 and inverse relative humidity), but in this instance, consider the interactions between the two stresses
-est2 <- lifestress.PHWbl.LSQest(probplot.wbl(mat1,"Blom","hours"), 1)[[3]]
+est2 <- lifestress.PHWbl.LSQest(probplot.wbl(mat1,"Blom","hours")[[1]], 1)[[3]]
 lifestress.PHWbl.MLEest(est2,mat1,1,0.9)
 
 

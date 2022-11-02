@@ -24,13 +24,15 @@ Rank of the failure data set \code{xi}.
 }
 \details{
 Definition of \emph{Blom} (or \emph{Kimball}) plotting position equation for failure probability (or unreliability) \eqn{F(x)}:
-\deqn{F_i(x_i) = (i - 0.375)/(n + 0.25)}
+\deqn{F_i(x_i) = \frac{i - 0.375}{n + 0.25}}
 }
 \value{
 Returns a matrix of nonparameter estimates for each failure data xi: Column 2 is the \emph{failure probability}, Column 3 is the \emph{reliability}, Column 4 is the \emph{hazard rate}, and Column 5 is the \emph{cumulative hazard}.
 }
 \references{
-%% ~put references to the literature/web site here ~
+Blom, G. (1958). Statistical Estimates and Transformed Beta Variables. Wiley, New York, N.Y., pp.68--75 and pp.143--146.
+
+Modarres, M., Kaminskiy, M., Krivstov, V.  (2022)	Reliability Engineering and Risk Analysis: A Practical Guide (4th Edition).  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2020-2022)
@@ -57,18 +59,6 @@ plotposit.blom(i = rankcalc(xi = Xi1), xi = Xi1)
 plotposit.blom(rankcalc(Xi1, NULL), Xi1, NULL)
 plotposit.blom(rankcalc(Xi1), Xi1)
 
-## The function is currently defined as
-function (i, xi, rc)
-{
-    nx <- nxi.count(xi, rc)
-    F <- (i - 0.375)/(nx[[1]] + 0.25)
-    R <- 1 - F
-    H <- -log(R)
-    h <- c(H[1], diff(H))
-    matFR <- matrix(c(nx[[2]], F, R, h, H), nrow = length(nx[[2]]),
-        ncol = 5)
-    return(matFR)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

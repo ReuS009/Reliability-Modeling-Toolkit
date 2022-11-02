@@ -30,13 +30,13 @@ Label for the x-axis for the plot.  If left blank, the default label is "X".
 }
 \details{
 Definition of \emph{Nelson-Aalen} plotting position equation for failure probability (or unreliability) \eqn{F(x)}:
-\deqn{F_i(x_i) = 1 - exp[-\Sigma_(x_i <= x) d_i/(n_(i - 1) - d_(i - 1) - c_(i - 1))]} (\emph{NOTE}: \eqn{d} is the number of failed units and \eqn{c} is the number of censored.)
+\deqn{F_i(x_i) = 1 - \exp[-\Sigma_{x_i \le x} \frac{d_i}{n_{i - 1} - d_{i - 1} - c_{i - 1}}]} (\emph{NOTE}: \eqn{d} is the number of failed units and \eqn{c} is the number of censored.)
 }
 \value{
 Outputs the matrix of non-parametric mean point estimates and upper and lower confidence limits of unreliability, reliability, hazard function, and cumulative hazard function versus the random variable \eqn{x}.  Output also includes the nonparametric plot stated by \code{relfcn} input.
 }
 \references{
-%% ~put references to the literature/web site here ~
+Modarres, M., Kaminskiy, M., Krivstov, V.  (2022)	Reliability Engineering and Risk Analysis: A Practical Guide (4th Edition).  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2020-2022)

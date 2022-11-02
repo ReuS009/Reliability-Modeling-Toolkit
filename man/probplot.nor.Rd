@@ -37,7 +37,7 @@ Label for the x-axis for the plot.  If left blank, the default label is "X".
 Normal distribution is unbounded (\eqn{-\infty < x < \infty}) consisting of a normal mean parameter \eqn{\mu} and a normal standard deviation parameter \eqn{\sigma}.
 
   PDF:
-  \deqn{f(x) = \frac{1}{\sigma \sqrt{2 \pi}} exp[-\frac{1}{2} (\frac{x - \mu}{\sigma})^2]}
+  \deqn{f(x) = \frac{1}{\sigma \sqrt{2 \pi}} \exp[-\frac{1}{2} (\frac{x - \mu}{\sigma})^2]}
 
   CDF:
 
@@ -58,7 +58,7 @@ Lists the stress level based on the grouped data.  These will always be the firs
 }
 }
 \references{
-%% ~put references to the literature/web site here ~
+Modarres, M., Amiri, M., Jackson, C.  (2017)  Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment.  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2021-2022)

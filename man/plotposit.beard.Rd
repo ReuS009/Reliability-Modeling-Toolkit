@@ -25,13 +25,13 @@ Rank of the failure data set \code{xi}.
 }
 \details{
 Definition of \emph{Jenkinson's} (or \emph{"Beard"}) plotting position equation for failure probability (or unreliability) \eqn{F(x)}:
-\deqn{F_i(x_i) = (i - 0.31)/(n + 0.38)}
+\deqn{F_i(x_i) = \frac{i - 0.31}{n + 0.38}}
 }
 \value{
 Returns a matrix of nonparameter estimates for each failure data xi: Column 2 is the \emph{failure probability}, Column 3 is the \emph{reliability}, Column 4 is the \emph{hazard rate}, and Column 5 is the \emph{cumulative hazard}.
 }
 \references{
-%% ~put references to the literature/web site here ~
+Beard, L. R. (1943) Statistical Analysis in Hydrology. Transactions of the American Society of Civil Engineers. vol. 108, pp. 1110–1160.
 }
 \author{
 Dr. Reuel Smith (2020-2022)
@@ -58,18 +58,6 @@ plotposit.beard(i = rankcalc(xi = Xi1), xi = Xi1)
 plotposit.beard(rankcalc(Xi1, NULL), Xi1, NULL)
 plotposit.beard(rankcalc(Xi1), Xi1)
 
-## The function is currently defined as
-function (i, xi, rc)
-{
-    nx <- nxi.count(xi, rc)
-    F <- (i - 0.31)/(nx[[1]] + 0.38)
-    R <- 1 - F
-    H <- -log(R)
-    h <- c(H[1], diff(H))
-    matFR <- matrix(c(nx[[2]], F, R, h, H), nrow = length(nx[[2]]),
-        ncol = 5)
-    return(matFR)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

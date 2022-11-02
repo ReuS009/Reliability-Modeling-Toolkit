@@ -37,7 +37,7 @@ Label for the x-axis for the plot.  If left blank, the default label is "X".
 Lognormal distribution is positively bounded (\eqn{x \geq 0}) consisting of a lognormal mean parameter \eqn{\mu_x} and a lognormal standard deviation parameter \eqn{\sigma_x}.
 
   PDF:
-  \deqn{f(x) = \frac{1}{x \sigma_x \sqrt{2 \pi}} exp[-\frac{1}{2} (\frac{ln x - \mu_x}{\sigma_x})^2]}
+  \deqn{f(x) = \frac{1}{x \sigma_x \sqrt{2 \pi}} \exp[-\frac{1}{2} (\frac{ln x - \mu_x}{\sigma_x})^2]}
 
   CDF:
 
@@ -58,7 +58,7 @@ Lists the stress level based on the grouped data.  These will always be the firs
 }
 }
 \references{
-%% ~put references to the literature/web site here ~
+Modarres, M., Amiri, M., Jackson, C.  (2017)  Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment.  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2021-2022)

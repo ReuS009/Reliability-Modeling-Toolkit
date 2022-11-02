@@ -37,11 +37,11 @@ Label for the x-axis for the plot.  If left blank, the default label is "X".
   Two-parameter exponential distribution is positively bounded (\eqn{x \geq 0}) consisting of a two-parameter exponential rate parameter \eqn{\sigma} and a two-parameter exponential location parameter \eqn{\theta}.
 
   PDF:
-  \deqn{f(x) = \frac{1}{\sigma} exp[- \frac{x - \theta}{\sigma}]}
+  \deqn{f(x) = \frac{1}{\sigma} \exp[- \frac{x - \theta}{\sigma}]}
 
   CDF:
 
-  \deqn{F(x) = 1 - exp[- \frac{x - \theta}{\sigma}]}
+  \deqn{F(x) = 1 - \exp[- \frac{x - \theta}{\sigma}]}
 }
 \value{
 The output, in addition to the Weibull probability plot, includes the following for each stress group outlined in the \code{data} input:
@@ -57,7 +57,7 @@ Lists the stress level based on the grouped data.  These will always be the firs
 }
 }
 \references{
-%% ~put references to the literature/web site here ~
+Modarres, M., Amiri, M., Jackson, C.  (2017)  Probabilistic Physics of Failure Approach to Reliability: Modeling, Accelerated Testing, Prognosis and Reliability Assessment.  Center for Risk and Reliability
 }
 \author{
 Dr. Reuel Smith (2021-2022)
