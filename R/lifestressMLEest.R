@@ -40,7 +40,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
     loglifeF <- function(theta) {
       log(theta[ishift+2] + SF*theta[ishift+1])
     }
-    if(missing(Tc)==FALSE){
+    if(is.null(Tc)==FALSE){
       lifeC <- function(theta) {
         theta[ishift+2] + Sc*theta[ishift+1]
       }
@@ -62,7 +62,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
     loglifeF <- function(theta) {
       log(theta[ishift+2]) + SF*theta[ishift+1]
     }
-    if(missing(Tc)==FALSE){
+    if(is.null(Tc)==FALSE){
       lifeC <- function(theta) {
         theta[ishift+2]*exp(Sc*theta[ishift+1])
       }
@@ -87,7 +87,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
     loglifeF <- function(theta) {
       log(theta[ishift+2]) + theta[ishift+1]/(K*SF)
     }
-    if(missing(Tc)==FALSE){
+    if(is.null(Tc)==FALSE){
       lifeC <- function(theta) {
         theta[ishift+2]*exp(theta[ishift+1]/(K*Sc))
       }
@@ -107,7 +107,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
     loglifeF <- function(theta) {
       log(theta[ishift+2]) - log(SF) + theta[ishift+1]/SF
     }
-    if(missing(Tc)==FALSE){
+    if(is.null(Tc)==FALSE){
       lifeC <- function(theta) {
         (theta[ishift+2]/Sc)*exp(theta[ishift+1]/Sc)
       }
@@ -127,7 +127,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
     loglifeF <- function(theta) {
       -log(SF) - theta[ishift+1] + theta[ishift+2]/SF
     }
-    if(missing(Tc)==FALSE){
+    if(is.null(Tc)==FALSE){
       lifeC <- function(theta) {
         (1/Sc)*exp(-(theta[ishift+1] - (theta[ishift+2]/Sc)))
       }
@@ -148,7 +148,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
     loglifeF <- function(theta) {
       log(theta[ishift+2]) + theta[ishift+1]*log(SF)
     }
-    if(missing(Tc)==FALSE){
+    if(is.null(Tc)==FALSE){
       lifeC <- function(theta) {
         theta[ishift+2]*(Sc^theta[ishift+1])
       }
@@ -170,7 +170,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
     loglifeF <- function(theta) {
       log(theta[ishift+2]) - theta[ishift+1]*log(SF)
     }
-    if(missing(Tc)==FALSE){
+    if(is.null(Tc)==FALSE){
       lifeC <- function(theta) {
         theta[ishift+2]*(Sc^-theta[ishift+1])
       }
@@ -191,7 +191,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
     loglifeF <- function(theta) {
       log(theta[ishift+1]*log(SF) + theta[ishift+2])
     }
-    if(missing(Tc)==FALSE){
+    if(is.null(Tc)==FALSE){
       lifeC <- function(theta) {
         theta[ishift+1]*log(Sc) + theta[ishift+2]
       }
@@ -265,7 +265,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
       }
       return(eqn2)
     }
-    if(missing(Tc)==FALSE){
+    if(is.null(Tc)==FALSE){
       lifeC <- function(theta) {
         if(dim(Sc)[2]==2){
           eqn3<-exp(theta[ishift+1]+theta[ishift+2]*Sc[,1]+theta[ishift+3]*Sc[,2])
@@ -341,7 +341,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
     loglifeF <- function(theta) {
       log(theta[ishift+1]) + (theta[ishift+2]/SF[,1]) + (theta[ishift+3]/SF[,2])
     }
-    if(missing(Tc)==FALSE){
+    if(is.null(Tc)==FALSE){
       lifeC <- function(theta) {
         theta[ishift+1]*exp((theta[ishift+2]/Sc[,1]) + (theta[ishift+3]/Sc[,2]))
       }
@@ -363,7 +363,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
     loglifeF <- function(theta) {
       log(theta[ishift+3]) - theta[ishift+2]*log(SF[,2]) + (theta[ishift+1]/SF[,1])
     }
-    if(missing(Tc)==FALSE){
+    if(is.null(Tc)==FALSE){
       lifeC <- function(theta) {
         theta[ishift+3]/((Sc[,2]^theta[ishift+2])*exp(-theta[ishift+1]/Sc[,1]))
       }
@@ -384,7 +384,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
     loglifeF <- function(theta) {
       -log(SF[,1]) + theta[ishift+1] + (theta[ishift+2]/SF[,1]) + (theta[ishift+3] + (theta[ishift+4]/SF[,1]))*SF[,2]
     }
-    if(missing(Tc)==FALSE){
+    if(is.null(Tc)==FALSE){
       lifeC <- function(theta) {
         (1/Sc[,1])*exp((theta[ishift+1] + (theta[ishift+2]/Sc[,1])) + (theta[ishift+3] + (theta[ishift+4]/Sc[,1]))*Sc[,2])
       }
@@ -400,7 +400,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
   if (dist=="Weibull") {
     positivity_v[1]<-1
 
-    if(missing(Tc)){
+    if(is.null(Tc)){
       loglik <- function(theta){
         -sum(log(theta[1]) + (theta[1]-1)*log(TTF) - theta[1]*loglifeF(theta) - ((TTF/lifeF(theta))^theta[1]))
       }
@@ -415,7 +415,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
   if (dist=="Lognormal") {
     positivity_v[1]<-1
 
-    if(missing(Tc)){
+    if(is.null(Tc)){
       loglik <- function(theta){
         -sum(-log(theta[1]) - 0.5*log(2*pi) - log(TTF) - 0.5*(theta[1]^-2)*((log(TTF) - loglifeF(theta))^2))
       }
@@ -430,7 +430,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
   if (dist=="Normal") {
     positivity_v[1]<-1
 
-    if(missing(Tc)){
+    if(is.null(Tc)){
       loglik <- function(theta){
         -sum(-log(theta[1]) - 0.5*log(2*pi) - 0.5*(theta[1]^-2)*((TTF - lifeF(theta))^2))
       }
@@ -443,7 +443,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
     distparam_txt<-"\U03C3"
   }
   if (dist=="Exponential") {
-    if(missing(Tc)){
+    if(is.null(Tc)){
       loglik <- function(theta){
         -sum(-loglifeF(theta) - TTF/lifeF(theta))
       }
@@ -457,7 +457,7 @@ lifestress.MLEest <- function(LSQest,ls,dist,TTF,SF,Tc,Sc,confid,sided){
   if (dist=="2PExponential") {
     positivity_v[1]<-1
 
-    if(missing(Tc)){
+    if(is.null(Tc)){
       loglik <- function(theta){
         -sum(-log(theta[1]) - (theta[1]^-1)*(TTF - lifeF(theta)) - 1)
       }
