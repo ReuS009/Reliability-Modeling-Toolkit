@@ -23,8 +23,14 @@ rankadj <- function(xi, rc) {
   iadj<-og_i + 0.5*(m-c)
   # Calculate rank adjusted rank
   i<-rep(1, length(iadj))
-  for (i2 in 2:length(iadj)) {
-    i[i2]<-i[i2 - 1] + ((nxitot[[1]] + 1)-i[i2 - 1])/(2 + nxitot[[1]] - og_i[i2])
+  if(iadj == 1 && length(iadj) == 1){
+    i <- 1
+  } else {
+    # Only applies for iadj >= 2
+    for (i2 in 2:length(iadj)) {
+      i[i2]<-i[i2 - 1] + ((nxitot[[1]] + 1)-i[i2 - 1])/(2 + nxitot[[1]] - og_i[i2])
+    }
   }
+
   return(i)
 }

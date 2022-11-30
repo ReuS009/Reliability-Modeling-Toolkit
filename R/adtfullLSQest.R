@@ -1,7 +1,7 @@
 # Least-Squares Accelerated Degradation Testing Estimator
 # Developed by Dr. Reuel Smith, 2021-2022
 
-adt.full.LSQ <- function(data,lifedam,D0,Tuse){
+adt.full.LSQ <- function(data,lifedam,D0,Tuse=293.15){
   # Load pracma library for pseudo-inverse
   library(pracma)
   library(dplyr)

@@ -1,7 +1,7 @@
 # MLE Accelerated Degradation Testing Estimator
 # Developed by Dr. Reuel Smith, 2021-2022
 
-adt.full.MLE <- function(data,lifedam,dist,D0,confid,sided,Tuse){
+adt.full.MLE <- function(data,lifedam,dist,D0,confid=0.95,sided="twosided",Tuse=293.15){
   # Load pracma library for pseudo-inverse
   library(pracma)
   library(dplyr)

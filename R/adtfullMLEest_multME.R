@@ -1,7 +1,7 @@
 # MLE Accelerated Degradation Testing Estimator (with multiplicative measurement error)
 # Developed by Dr. Reuel Smith, 2022
 
-adt.full.multME.MLE <- function(data,lifedam,D0,confid,sided,multME,Tuse){
+adt.full.multME.MLE <- function(data,lifedam,D0,confid=0.95,sided="twosided",multME,Tuse=293.15){
   # Load pracma library for pseudo-inverse
   library(pracma)
   library(dplyr)

@@ -127,6 +127,7 @@ lifestress.LSQest <- function(ls,dist,pp,therm) {
       L[i2+(length(pp)-1)/3]<-tail(pp,n=1)[[1]][[i2]][[1]]
     }
   }
+  # return(list(S,L))
 
   if (dist=="Weibull") {
     # Writeup for the output text
@@ -358,7 +359,7 @@ lifestress.LSQest <- function(ls,dist,pp,therm) {
     params_txt<-params_txt
   }
   else {
-    LSQ<-c(mean(distparams),lsparams)
+    LSQ<-c(mean(distparams[which(is.na(distparams) == FALSE)]),lsparams)
     params_txt<-c(distparam_txt,params_txt)
   }
 
