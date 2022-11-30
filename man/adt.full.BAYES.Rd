@@ -116,11 +116,11 @@ RStan is currently unable to compile stan code for R and Rtools versions 4.2 and
 }
 \examples{
 ## Example 1:
-## Download the CSV 'DegradationData4.csv' from the CRR website which is made up of the
+## Download the following CSV from GitHub which is made up of the
 ## full set of LED luminosity test data based on Table 5.10.  Per Example 5.5, failure occurs
 ## when luminosity drops to 0.5.  Normal use temperature is given as 20 deg C and the priors
 ## for
-datADT4 <- read.csv("c:/Download/DegradationData4.csv")
+datADT4 <- read.csv("https://raw.githubusercontent.com/ReuS009/reliabilitytk/main/CSVExampleData/Degradation_Data_4_Luminosity_Drop_by_Temperature_Kelvin_Example_5_5.csv")
 adt.full.BAYES(datADT4,"Hamada","Lognormal",0.5,293.15,0.9,c("uniform(0.000001,100)","uniform(0.00001,100)","uniform(-100,100)","uniform(0.00001,100)"), 5000,100)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

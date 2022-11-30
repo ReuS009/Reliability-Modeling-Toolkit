@@ -79,10 +79,10 @@ Suggest running the ADT Rank Calculator \code{\link{adt.rank}} before running th
 }
 \examples{
 ## Example 1:
-## Download the CSV 'DegradationData1.csv' from the CRR website which is made up of the
-## metallic alloy test data from Table 5.2.  Computes the Least Squared estimate of the
+## Download the CSV containing the metallic alloy test data from Table 5.2
+## Computes the Least Squared estimate of the
 ## pseudo failure times based on reaching a 50 microgram scar width.
-datADT1 <- read.csv("c:/Download/DegradationData1.csv")
+datADT1 <- read.csv("https://raw.githubusercontent.com/ReuS009/reliabilitytk/main/CSVExampleData/Degradation_Data_1_Mass_Loss_by_Weight_gms_Example_5_2.csv")
 OUT <- adt.full.LSQ(datADT1,"Power",50)
 
 

@@ -91,9 +91,8 @@ There is another model, the \strong{Hamada model} is a Mitsuom form model that i
 }
 \examples{
 ## Example 1:
-## Download the CSV 'DegradationData1.csv' from the CRR website which is made up of the
-## metallic alloy test data from Table 5.2.
-datADT1 <- read.csv("c:/Download/DegradationData1.csv")
+## Download the CSV containing the metallic alloy test data from Table 5.2
+datADT1 <- read.csv("https://raw.githubusercontent.com/ReuS009/reliabilitytk/main/CSVExampleData/Degradation_Data_1_Mass_Loss_by_Weight_gms_Example_5_2.csv")
 adt.rank(datADT1)
 }
 

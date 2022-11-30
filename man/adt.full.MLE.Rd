@@ -82,10 +82,10 @@ Suggest running the ADT Rank Calculator \code{\link{adt.rank}} before running th
 }
 \examples{
 ## Example 1:
-## Download the CSV 'DegradationData1.csv' from the CRR website which is made up of the
+## Download the following CSV from GitHub which is made up of the
 ## metallic alloy test data from Table 5.2.  Computes the maximum likelihood estimate of the
 ## pseudo failure times based on reaching a 50 microgram scar width.
-datADT1 <- read.csv("c:/Download/DegradationData1.csv")
+datADT1 <- read.csv("https://raw.githubusercontent.com/ReuS009/reliabilitytk/main/CSVExampleData/Degradation_Data_1_Mass_Loss_by_Weight_gms_Example_5_2.csv")
 adt.full.MLE(datADT1,"Power","Lognormal",50,0.9,"twosided")
 
 }
