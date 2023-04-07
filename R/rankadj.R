@@ -23,7 +23,7 @@ rankadj <- function(xi, rc) {
   iadj<-og_i + 0.5*(m-c)
   # Calculate rank adjusted rank
   i<-rep(1, length(iadj))
-  if(iadj == 1 && length(iadj) == 1){
+  if(identical(iadj,1) && length(iadj) == 1){
     i <- 1
   } else {
     # Only applies for iadj >= 2
