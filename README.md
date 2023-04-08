@@ -16,7 +16,7 @@ library(devtools)
 ```
 * *If Rtools is installed, build from source:*
 ```
-* devtools::install_github("ReuS009/reliabilitytk")
+devtools::install_github("ReuS009/reliabilitytk")
 ```
 * *Otherwise, use the following:*
 ```
