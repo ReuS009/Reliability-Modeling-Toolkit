@@ -10,19 +10,24 @@
 
 Installation instructions from source for Reliabilitytk:
 
-* install.packages("devtools")
-* library(devtools)
-* # If Rtools is installed, build from source:
+```
+install.packages("devtools")
+library(devtools)
+```
+* *If Rtools is installed, build from source:*
+```
 * devtools::install_github("ReuS009/reliabilitytk")
-* # Otherwise, use the following:
-* devtools::install_github("ReuS009/reliabilitytk", build = FALSE)
-
+```
+* *Otherwise, use the following:*
+```
+devtools::install_github("ReuS009/reliabilitytk", build = FALSE)
+```
 Running Unit tests for Reliabilitytk:
-
-* install.packages("testthat")
-* setwd("[File location of reliabilitytk library]")
-* devtools::test()
-
+```
+install.packages("testthat")
+setwd("[File location of reliabilitytk library]")
+devtools::test()
+```
 ### Source Repository
 
 Reliabilitytk's source code repository is hosted here on GitHub.
