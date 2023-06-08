@@ -16,11 +16,11 @@ library(devtools)
 ```
 * *If Rtools is installed, build from source:*
 ```
-devtools::install_github("ReuS009/reliabilitytk")
+devtools::install_github("ReuS009/reliabilitytk", INSTALL_opts = "--install-tests")
 ```
 * *Otherwise, use the following:*
 ```
-devtools::install_github("ReuS009/reliabilitytk", build = FALSE)
+devtools::install_github("ReuS009/reliabilitytk", build = FALSE, INSTALL_opts = "--install-tests")
 ```
 Running Unit tests for Reliabilitytk:
 ```
