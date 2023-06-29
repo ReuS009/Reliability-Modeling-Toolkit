@@ -25,8 +25,9 @@ devtools::install_github("ReuS009/reliabilitytk", build = FALSE, INSTALL_opts = 
 Running Unit tests for Reliabilitytk:
 ```
 install.packages("testthat")
-setwd("[File location of reliabilitytk library]")
-devtools::test()
+library(testthat)
+library(reliabilitytk)
+test_package("reliabilitytk")
 ```
 ### Source Repository
 
