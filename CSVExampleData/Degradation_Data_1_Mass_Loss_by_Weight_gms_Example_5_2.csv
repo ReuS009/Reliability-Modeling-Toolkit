@@ -1,4 +1,4 @@
-Time (x100 cycles),Weight Loss (gms),Unit Number,Weight (gms)
+Cycles (x100),Weight Loss (microns),Unit Number,Applied Weight (g)
 2,3.2,Unit 1,10
 5,4.1,Unit 1,10
 10,4.5,Unit 1,10
