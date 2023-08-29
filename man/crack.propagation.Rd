@@ -135,10 +135,10 @@ Iterative analysis of crack propagation (\code{iterative = 1}) is not yet availa
 crack.propagation(list(C = 3.81e-12, m = 3, Kic = 66, fg = 1, prop_model = "Paris"),list(r = 1),"center_2a",list(DS= 206, R = 0),1)
 
 # Example 2: Example problem 2.10 from Modarres, Amiri, & Jackson, but with R = 0.1.
-crack.propagation(list(C = 3.81e-12, m = 3, Kic = 66, fg = 1, prop_model = "Paris"),list(r = 1),"center_2a",list(DS= 206, R = 0.1),1)
+crack.propagation(list(C = 3.81e-12, m = 3, Kic = 66, fg = 1, prop_model = "Paris"),list(r = 1),"center_2a",list(DS= 206, R = 0.1))
 
 # Example 3: Now assume that the crack propagation (from Example 2) follows the Walker growth model with a gamma (gam) value of 0.9.
-crack.propagation(list(C = 3.81e-12, m = 3, gam = 0.9, Kic = 66, fg = 1, prop_model = "Paris"),list(r = 1),"center_2a",list(DS= 206, R = 0.1),1)
+crack.propagation(list(C = 3.81e-12, m = 3, gam = 0.9, Kic = 66, fg = 1, prop_model = "Paris"),list(r = 1),"center_2a",list(DS= 206, R = 0.1))
 
 # Example 4: The following is crack propagation data for a type of aluminum with a fracture toughness of 27 MPa-m^0.5, a single edge notch of 0.5 mm, and a width of 100 mm with 5 mm thickness.  Assume it follows the Paris model.  Then assume it follows the Walker model.
 a1 <- c(0.244, 0.246, 0.251, 0.285, 0.347, 0.414, 0.49, 0.621, 0.956, 1.577, 2.588, 3.078, 3.241, 3.445)
